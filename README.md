@@ -1,40 +1,78 @@
-# Felix’s Journey with AI
+# Felix — AI-Native Product Builder & Creative Technologist
 
-A cinematic, evidence-backed portfolio of Felix’s public experiments with AI: **21 repositories, 11 live browser worlds, five thematic chapters, and three deliberately unresolved names**.
+An employer-facing portfolio showing how Felix turns unusual ideas into working products through product framing, interaction direction, AI-assisted implementation, critical review, and honest shipping.
 
-[View the public presentation](https://ijustcreate.github.io/felix-journey/) · [Browse Felix’s GitHub](https://github.com/ijustcreate?tab=repositories)
+[View the public portfolio](https://ijustcreate.github.io/felix-journey/) · [Browse Felix’s GitHub](https://github.com/ijustcreate?tab=repositories)
 
-![Felix’s Journey with AI — abstract map of connected project worlds](public/og.png)
+![Felix — I turn unusual ideas into working products](public/og-employer.png)
 
-## What this is
+## The candidate story
 
-This is not a generic project grid or a claim that “AI built everything.” It is a guided route through a real body of work made by Felix in collaboration with AI. The sequence is thematic rather than chronological, and every project entry keeps three things visible:
+Felix works between product design, experience design, and implementation. His strongest territory is the ambiguous middle: the idea has promise, but it still needs an audience, interaction model, visual language, operating boundary, and testable form.
 
-- what the project is;
-- where the real source or live experience can be found;
-- one important limitation, privacy boundary, or unfinished edge.
+The portfolio makes the human–AI contribution split explicit:
 
-The five chapters move from explorable worlds and simulation rules through community tools, gentler work software, and desktop-scale play. The Facebook Comment Collector and Video Store Backrooms form the clearest end-to-end example: 679 comments were collected locally, reviewed and anonymized, then shaped into a public store of 601 recommended films.
+- **Felix owns** the product premise, audience, experience direction, visual judgment, domain constraints, critical review, publication boundary, and final decision.
+- **AI accelerates** implementation exploration, repetitive integration, debugging, test scaffolding, documentation, alternatives, and iteration speed.
+- The keystrokes may be shared. Responsibility for what ships remains human.
+
+## What Felix contributes
+
+1. **Product framing** — turns loose concepts into audiences, environments, primary actions, constraints, and success criteria.
+2. **Interaction and experience direction** — prioritizes a clear primary action, visible system state, recovery, humane language, and a distinct visual world.
+3. **AI-assisted implementation leadership** — gives AI concrete context and constraints, evaluates working behavior, and steers integration across stacks.
+4. **Privacy and editorial judgment** — chooses derived data over raw personal material, synthetic evidence over private media, and local-first behavior where cloud convenience creates the wrong risk.
+5. **Verification and shipping** — carries prototypes through builds, tests, privacy review, CI, documentation, safe captures, and public deployment.
+
+The language deliberately avoids claiming that Felix manually authored every line of code. The portfolio presents him as the person responsible for the intent, direction, evaluation, and release—not as a passive prompt writer or an unassisted solo engineer.
+
+## Featured case studies
+
+### Application Companion
+
+A human-in-the-loop AI workflow for preparing job applications without account connection, document upload, API-key entry, autofill, or automatic submission.
+
+**Contribution focus:** product framing, onboarding and handoff flow, privacy boundary, interaction direction, critical review, and release judgment.
+
+**Evidence:** local prompt builder, sanitized import/export, HTTPS-only employer-page handoff, five tests, privacy audit, and [live public prototype](https://ijustcreate.github.io/application-companion/).
+
+### Facebook Comment Collector → Video Store Backrooms
+
+An end-to-end transformation from community conversation to public cultural artifact.
+
+**Contribution focus:** privacy-first collection, names-off default, review and anonymization boundary, information architecture, and the video-store experience metaphor.
+
+**Evidence:** 679 comments became 601 reviewed film recommendations. The [collector source](https://github.com/ijustcreate/facebook-comment-collector) is public, the [store is live](https://ijustcreate.github.io/video-store-backrooms/), and the raw social discussion remains private.
+
+### Desktop Reality
+
+A Windows prototype that treats live desktop geometry as navigable game space.
+
+**Contribution focus:** original interaction premise, visual and game direction, AI-assisted integration across Electron/PowerShell/Canvas, and the privacy boundary around local desktop data.
+
+**Evidence:** public source, context-isolated integration, syntax/publication checks, a multi-window smoke run, and a related C#/Electron prototype with 24 core logic tests.
+
+## Complete evidence base
+
+The portfolio preserves all **21 public repositories** and **11 live browser experiences** in a compact work index after the contribution story. Native projects link to source when their real behavior depends on Windows, Electron, permissions, hardware, or local data; they are not replaced with misleading static mockups.
+
+The museum group—Space Adventure, Museum Animation Studio, Museum Newsroom, and Animal Audio Playground—demonstrates experience design beyond the screen: visitors, room geometry, hardware, staff workflow, reset, consent, and failure recovery.
 
 ## Design direction
 
-The presentation applies **Felix Flair**: a dark, tactile foundation; cinematic scale; calm technical density; visible state; restrained motion; and one useful odd detail. Project screenshots are allowed to carry the story. Controls stay plain, links say exactly where they lead, and unsupported claims are kept out.
+The presentation applies Felix Flair without making the interface the subject:
 
-The generated hero artwork is a map of the journey, not a product screenshot. All project captures below it are existing project-owned assets. See [ASSET_MANIFEST.md](ASSET_MANIFEST.md) for provenance and the privacy review.
+- employer value before project quantity;
+- genuine project captures before generated illustration;
+- large, cinematic hierarchy and calm technical detail;
+- flat evidence structures instead of nested dashboards;
+- visible status and clear link destinations;
+- restrained motion with reduced-motion support;
+- one slightly crooked pixel in an otherwise disciplined grid.
 
-## Project map
+The employer-facing social card is generated editorial artwork. Product images used in the site are existing project-owned captures and are documented in [ASSET_MANIFEST.md](ASSET_MANIFEST.md).
 
-| Chapter | Projects |
-| --- | --- |
-| Worlds you can enter | Recreate Space from Images, Dream Cabin Chronicles, Fish Pond, Quest Compass, Space Adventure, Portals Lab |
-| Small universes, big behavior | Emergent Complexity, Codex Mobile / One Pixel MMO, Planet Smmith |
-| Culture, memory, and community | Facebook Comment Collector, Video Store Backrooms, The Muses Library, Animal Audio Playground, Museum Newsroom, Museum Animation Studio |
-| Tools that know when to stop | Media Watcher, Application Companion, Rollwright, ZenDeck |
-| When the desktop becomes the stage | Desktop Reality, Desktop Geometry Wars |
-
-Aliases and modules remain attached to their real homes: **Watcher** is Media Watcher, **Life** belongs to Emergent Complexity, and **One Pixel MMO** lives inside Codex Mobile. **Builder**, **Pixel 3D World**, and **Open Human** remain visibly unresolved until their authoritative artifacts are identified.
-
-## Run locally
+## Run and validate
 
 Requires Node.js 22.13 or newer.
 
@@ -43,8 +81,6 @@ npm install
 npm run dev
 ```
 
-Then open the local URL printed by Vinext.
-
 Validation:
 
 ```bash
@@ -52,45 +88,29 @@ npm run lint
 npm test
 ```
 
-`npm test` produces a Sites-compatible build and verifies the rendered portfolio, external project links, publication language, and required asset manifest.
+The rendered tests verify the candidate positioning, explicit human/AI responsibility split, three featured case studies, all 21 work-index entries, key external links, and required evidence assets.
 
 ## Publishing
 
-The repository supports two delivery targets from the same source:
+The same source supports two delivery targets:
 
-- **GitHub Pages** builds a static export with `FELIX_DEPLOY_TARGET=github-pages` and publishes `dist/client` through `.github/workflows/deploy-pages.yml`.
-- **OpenAI Sites** uses the default Vinext/Cloudflare worker build and the configuration in `.openai/hosting.json`.
-
-The GitHub target intentionally uses a Vite asset base plus `NEXT_PUBLIC_ASSET_BASE`. Vinext 0.0.50 cannot prerender this site reliably with a conventional Next.js `basePath`, so hand-written public asset URLs are prefixed explicitly.
-
-## Structure
-
-```text
-app/
-  layout.tsx       metadata and page shell
-  page.tsx         verified project data and presentation markup
-  globals.css      complete visual and responsive system
-public/
-  og.png           generated journey-map artwork
-  projects/        curated project-owned captures
-.github/workflows/ deploy GitHub Pages
-.openai/            Sites project configuration
-tests/              rendered-output and asset-boundary checks
-```
+- **GitHub Pages** produces a static export with `FELIX_DEPLOY_TARGET=github-pages` and publishes `dist/client` through GitHub Actions.
+- **OpenAI Sites** uses the default Vinext/Cloudflare worker build and `.openai/hosting.json`.
 
 ## Accuracy and privacy
 
-- Counts and links were reconciled against the portfolio audit on 2026-08-05/06.
-- Native apps link to source rather than pretending a static mockup is the product.
-- Captures with desktop chrome, personal interiors, user labels, or client fields were omitted from this portfolio even when they existed elsewhere.
-- Planet Smmith artwork is explicitly labeled concept art, not gameplay.
-- Public visibility does not grant reuse rights where an individual project has no license.
-- No analytics, accounts, application uploads, or personal project data are used by this presentation.
+- Counts and links were reconciled against the August 2026 portfolio audit.
+- The page does not claim commercial adoption, museum installation, production authentication, revenue, or measured business impact.
+- Emergent Complexity is described as fork-derived work retaining upstream AGPL obligations.
+- Application Companion is not presented as an automatic application-submission system or live OpenAI API integration.
+- Planet Smmith is a design document; its concept image is not gameplay evidence.
+- Captures containing personal interiors, desktop details, visitor media, applicant data, or client fields were excluded.
+- Watcher, Life, and One Pixel MMO remain aliases/modules rather than inflated project counts.
 
 ## License
 
-No project-wide license has been selected. The repository is public to view and discuss; that does not automatically grant permission to reuse its code, writing, or artwork. Linked projects retain their own licenses and obligations.
+No project-wide license has been selected. Public visibility permits viewing and discussion; it does not automatically grant permission to reuse the code, writing, or artwork. Linked projects retain their own licenses and obligations.
 
 ---
 
-Built with AI. Edited with judgment. Verified before publication.
+Felix set the direction. AI accelerated the build. The responsibility for what appears here is human.
