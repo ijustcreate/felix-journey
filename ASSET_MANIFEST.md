@@ -4,6 +4,10 @@ Curated on 2026-08-06 from existing project-owned visuals. Every destination fil
 
 Privacy screen: selected files contain no surrounding desktop, taskbar, notifications, API keys, account credentials, private conversations, or non-demo user content. Application title bars that are intrinsic to an app-only capture are noted as part of the genuine screenshot.
 
+## Employer-facing social card
+
+`public/og-employer.png` is newly generated editorial artwork for link previews. It contains the exact positioning used by the revised portfolio—“Felix”, “I turn unusual ideas into working products”, and “Creative technologist · AI-native product builder”—on the same graphite, warm-white, acid-lime, and cyan visual system. It is presentation artwork, not project evidence or a product screenshot. The earlier `public/og.png` journey map remains an unused archival asset.
+
 | Project | Source path | Destination | Classification | Review note |
 | --- | --- | --- | --- | --- |
 | Dream Cabin Chronicles | `C:\Users\17148\Desktop\felix TTRPG\docs\screenshots\campaign-library.png` | `public/projects/dream-cabin.png` | Genuine product screenshot | Campaign names and characters are project fiction; no desktop chrome. |

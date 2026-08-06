@@ -14,32 +14,45 @@ async function render() {
   );
 }
 
-test("renders the complete Felix journey", async () => {
+test("renders Felix as the candidate before presenting the archive", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Felix’s Journey with AI<\/title>/i);
-  assert.match(html, /Five chapters/);
-  assert.match(html, /21 public repositories/);
-  assert.match(html, /The Video Store Backrooms/);
-  assert.match(html, /https:\/\/github\.com\/ijustcreate\/desktop-geometry-wars/);
-  assert.match(html, /https:\/\/ijustcreate\.github\.io\/portals\//);
+  assert.match(html, /<title>Felix — AI-Native Product Builder &amp; Creative Technologist<\/title>/i);
+  assert.match(html, /I turn unusual ideas into/);
+  assert.match(html, /What I contribute/);
+  assert.match(html, /Felix owns/);
+  assert.match(html, /AI accelerates/);
+  assert.match(html, /Three cases that show how I think/);
+  assert.match(html, /Application Companion/);
+  assert.match(html, /Comment Collector/);
+  assert.match(html, /Desktop Reality/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
-test("ships the curated image set and publication boundary", async () => {
+test("keeps the full public portfolio and contribution evidence inspectable", async () => {
+  const response = await render();
+  const html = await response.text();
+  assert.equal((html.match(/class="work-index__number"/g) ?? []).length, 21);
+  assert.equal((html.match(/class="case-study(?: |")/g) ?? []).length, 3);
+  assert.match(html, /https:\/\/github\.com\/ijustcreate\/desktop-geometry-wars/);
+  assert.match(html, /https:\/\/ijustcreate\.github\.io\/application-companion\//);
+  assert.match(html, /The responsibility is not/);
+});
+
+test("ships curated evidence and the employer-facing social card", async () => {
   await Promise.all([
-    access(new URL("../public/og.png", import.meta.url)),
-    access(new URL("../public/projects/fish-pond.png", import.meta.url)),
+    access(new URL("../public/og-employer.png", import.meta.url)),
+    access(new URL("../public/projects/application-companion.png", import.meta.url)),
+    access(new URL("../public/projects/video-store-backrooms.png", import.meta.url)),
     access(new URL("../public/projects/desktop-reality.png", import.meta.url)),
-    access(new URL("../public/projects/planet-smmith-concept.png", import.meta.url)),
     access(new URL("../ASSET_MANIFEST.md", import.meta.url)),
   ]);
 
   const manifest = await readFile(new URL("../ASSET_MANIFEST.md", import.meta.url), "utf8");
+  assert.match(manifest, /Privacy screen/);
   assert.match(manifest, /Concept art/);
   assert.match(manifest, /Deliberate omissions/);
-  assert.match(manifest, /Privacy screen/);
 });
