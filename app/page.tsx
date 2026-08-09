@@ -1,4 +1,8 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element -- explicit public paths keep this portfolio portable across Sites and GitHub Pages. */
+
+import { useEffect, useState, type KeyboardEvent, type ReactNode } from "react";
 
 type WorkItem = {
   name: string;
@@ -189,7 +193,18 @@ const work: WorkItem[] = [
 const assetBase = process.env.NEXT_PUBLIC_ASSET_BASE ?? "";
 const projectAsset = (name: string) => `${assetBase}/projects/${name}`;
 
-function ProjectLink({ href, children, primary = false }: { href: string; children: React.ReactNode; primary?: boolean }) {
+const portfolioTabs = [
+  { id: "start", label: "Start", detail: "The short read" },
+  { id: "thinking", label: "How I think", detail: "The method" },
+  { id: "lantern", label: "Project Lantern", detail: "Museum control room" },
+  { id: "bcd", label: "BCD Karaoke", detail: "Venue interaction" },
+  { id: "proof", label: "More proof", detail: "Three related builds" },
+  { id: "archive", label: "All work", detail: "Complete public index" },
+] as const;
+
+type TabId = (typeof portfolioTabs)[number]["id"];
+
+function ProjectLink({ href, children, primary = false }: { href: string; children: ReactNode; primary?: boolean }) {
   return (
     <a className={`action-link ${primary ? "action-link--primary" : ""}`} href={href} target="_blank" rel="noreferrer">
       {children} <span aria-hidden="true">↗</span>
@@ -197,7 +212,7 @@ function ProjectLink({ href, children, primary = false }: { href: string; childr
   );
 }
 
-function EvidenceDetails({ title, question, children }: { title: string; question: string; children: React.ReactNode }) {
+function EvidenceDetails({ title, question, children }: { title: string; question: string; children: ReactNode }) {
   return (
     <details className="evidence-details">
       <summary>
@@ -211,32 +226,91 @@ function EvidenceDetails({ title, question, children }: { title: string; questio
 }
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<TabId>("start");
+  const activeTabIndex = portfolioTabs.findIndex((tab) => tab.id === activeTab);
+
+  useEffect(() => {
+    const syncTabFromHash = () => {
+      const tabFromHash = window.location.hash.replace("#", "") as TabId;
+      if (portfolioTabs.some((tab) => tab.id === tabFromHash)) {
+        setActiveTab(tabFromHash);
+      }
+    };
+
+    syncTabFromHash();
+    window.addEventListener("hashchange", syncTabFromHash);
+    return () => window.removeEventListener("hashchange", syncTabFromHash);
+  }, []);
+
+  const selectTab = (tabId: TabId) => {
+    setActiveTab(tabId);
+    window.history.replaceState(null, "", `#${tabId}`);
+  };
+
+  const moveTabFocus = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const keyMap: Record<string, number> = {
+      ArrowLeft: index === 0 ? portfolioTabs.length - 1 : index - 1,
+      ArrowRight: index === portfolioTabs.length - 1 ? 0 : index + 1,
+      Home: 0,
+      End: portfolioTabs.length - 1,
+    };
+    const nextIndex = keyMap[event.key];
+
+    if (nextIndex === undefined) return;
+    event.preventDefault();
+    const nextTab = portfolioTabs[nextIndex];
+    selectTab(nextTab.id);
+    requestAnimationFrame(() => document.getElementById(`portfolio-tab-${nextTab.id}`)?.focus());
+  };
+
   return (
     <>
-      <a className="skip-link" href="#thinking">Skip to how Felix thinks</a>
+      <a className="skip-link" href="#portfolio-tabs">Skip to portfolio sections</a>
 
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Felix portfolio, home">
+        <a className="wordmark" href="#start" aria-label="Felix portfolio, home" onClick={() => selectTab("start")}>
           <span className="wordmark__pixel" />
           <span>Felix / field notes</span>
         </a>
-        <nav aria-label="Primary navigation">
-          <a href="#thinking">How I think</a>
-          <a href="#lantern">Project Lantern</a>
-          <a href="#bcd">BCD Karaoke</a>
-          <a href="#work">Work index</a>
+        <nav aria-label="External profiles">
           <a className="header-github" href="https://github.com/ijustcreate" target="_blank" rel="noreferrer">GitHub ↗</a>
         </nav>
       </header>
 
-      <main id="top">
-        <section className="hero" aria-labelledby="hero-title">
+      <main id="top" className="portfolio-main">
+        <div className="portfolio-tabs-shell">
+          <nav className="portfolio-tabs" id="portfolio-tabs" role="tablist" aria-label="Portfolio sections">
+            {portfolioTabs.map((tab, index) => (
+              <button
+                key={tab.id}
+                id={`portfolio-tab-${tab.id}`}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                aria-controls={`portfolio-panel-${tab.id}`}
+                tabIndex={activeTab === tab.id ? 0 : -1}
+                onClick={() => selectTab(tab.id)}
+                onKeyDown={(event) => moveTabFocus(event, index)}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+          <p className="portfolio-tabs-state" aria-live="polite">
+            <span>Current focus</span>
+            <strong>{portfolioTabs[activeTabIndex].detail}</strong>
+            <i>{String(activeTabIndex + 1).padStart(2, "0")} / {String(portfolioTabs.length).padStart(2, "0")}</i>
+          </p>
+        </div>
+
+        <section id="portfolio-panel-start" className="hero tab-panel tab-panel--start" role="tabpanel" aria-labelledby="portfolio-tab-start" hidden={activeTab !== "start"}>
           <div className="hero__copy">
             <p className="eyebrow">Felix Embree · creative technologist · AI-native product builder</p>
             <h1 id="hero-title">I make systems people can <em>feel their way through.</em></h1>
             <p className="hero__lede">My work starts with a real situation: a museum staffer beside a TV wall, a singer holding a phone in a dark room, a community thread that needs care. I find the pressure in the moment, shape the interaction around it, and use AI to accelerate the build without giving away the judgment.</p>
             <div className="hero__actions">
-              <a className="button button--bright" href="#thinking">See how I think <span aria-hidden="true">↓</span></a>
+              <button className="button button--bright" type="button" onClick={() => selectTab("thinking")}>See how I think <span aria-hidden="true">→</span></button>
               <a className="button" href="https://ijustcreate.github.io/project-lantern/" target="_blank" rel="noreferrer">Open Project Lantern ↗</a>
             </div>
             <p className="hero__disclosure">Felix directs the product premise, experience, constraints, critique, and release decision. AI accelerates implementation, integration, debugging, testing, and documentation.</p>
@@ -266,7 +340,7 @@ export default function Home() {
           </dl>
         </section>
 
-        <section className="thinking" id="thinking" aria-labelledby="thinking-title">
+        <section id="portfolio-panel-thinking" className="thinking tab-panel" role="tabpanel" aria-labelledby="portfolio-tab-thinking" hidden={activeTab !== "thinking"}>
           <header className="section-heading">
             <p className="eyebrow">The thread behind the projects</p>
             <h2 id="thinking-title">I do not begin with a screen. I begin with the moment the screen has to survive.</h2>
@@ -316,14 +390,14 @@ export default function Home() {
           </aside>
         </section>
 
-        <section className="cases" aria-labelledby="cases-title">
+        <section id="portfolio-panel-lantern" className="cases tab-panel" role="tabpanel" aria-labelledby="portfolio-tab-lantern" hidden={activeTab !== "lantern"}>
           <header className="section-heading section-heading--compact">
             <p className="eyebrow">Two new evidence packets</p>
             <h2 id="cases-title">Same instincts. Very different rooms.</h2>
             <p>These are not just finished interfaces. They are records of how a loose prompt became a usable object through concrete product decisions.</p>
           </header>
 
-          <article className="case-story case-story--lantern" id="lantern">
+          <article className="case-story case-story--lantern">
             <header className="case-story__header">
               <span className="case-story__number">01</span>
               <div>
@@ -378,7 +452,16 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="case-story case-story--bcd" id="bcd">
+        </section>
+
+        <section id="portfolio-panel-bcd" className="cases tab-panel" role="tabpanel" aria-labelledby="portfolio-tab-bcd" hidden={activeTab !== "bcd"}>
+          <header className="section-heading section-heading--compact">
+            <p className="eyebrow">A different room, same attention</p>
+            <h2>Interaction that works after the lights go down.</h2>
+            <p>Behind Closed Doors Karaoke is a real-world test of small screens, messy attention, shared state, and playful details that do not get in the way.</p>
+          </header>
+
+          <article className="case-story case-story--bcd">
             <header className="case-story__header">
               <span className="case-story__number">02</span>
               <div>
@@ -437,6 +520,7 @@ export default function Home() {
           </article>
         </section>
 
+        <div id="portfolio-panel-proof" className="tab-panel" role="tabpanel" aria-labelledby="portfolio-tab-proof" hidden={activeTab !== "proof"}>
         <section className="transfer" aria-labelledby="transfer-title">
           <header className="section-heading">
             <p className="eyebrow">The pattern transfers</p>
@@ -468,7 +552,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="work-index" id="work" aria-labelledby="work-title">
+        </div>
+
+        <div id="portfolio-panel-archive" className="tab-panel tab-panel--archive" role="tabpanel" aria-labelledby="portfolio-tab-archive" hidden={activeTab !== "archive"}>
+        <section className="work-index" aria-labelledby="work-title">
           <header className="section-heading section-heading--compact">
             <p className="eyebrow">Complete public work index</p>
             <h2 id="work-title">Breadth after proof.</h2>
@@ -505,14 +592,15 @@ export default function Home() {
           <p>I’m most useful where creative technology, AI interaction, spatial systems, playful tools, and real human environments overlap—when an idea has promise but still needs a form people can see, use, question, and improve.</p>
           <div className="hero__actions">
             <a className="button button--bright" href="https://github.com/ijustcreate?tab=repositories" target="_blank" rel="noreferrer">Review my GitHub ↗</a>
-            <a className="button" href="#thinking">Return to the method ↑</a>
+            <button className="button" type="button" onClick={() => selectTab("thinking")}>Return to the method ↑</button>
           </div>
           <blockquote>“The person with the knife gets the final vote.”<cite>— Rollwright, keeping software close to reality</cite></blockquote>
         </section>
+        </div>
       </main>
 
       <footer>
-        <a className="wordmark" href="#top"><span className="wordmark__pixel" /><span>Felix / field notes</span></a>
+        <a className="wordmark" href="#start" onClick={() => selectTab("start")}><span className="wordmark__pixel" /><span>Felix / field notes</span></a>
         <p>Felix sets the direction. AI accelerates the build. The responsibility for what appears here is human.</p>
         <p>Portfolio evidence reviewed · August 2026</p>
       </footer>

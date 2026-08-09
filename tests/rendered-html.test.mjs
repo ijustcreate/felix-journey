@@ -29,6 +29,12 @@ test("renders Felix's working method before presenting the archive", async () =>
   assert.match(html, /Project Lantern/);
   assert.match(html, /Behind Closed Doors Karaoke/);
   assert.match(html, /Application Companion/);
+  assert.equal((html.match(/role="tab"/g) ?? []).length, 6);
+  assert.equal((html.match(/role="tabpanel"/g) ?? []).length, 6);
+  assert.match(html, /Current focus/);
+  assert.match(html, /Project Lantern/);
+  assert.match(html, /BCD Karaoke/);
+  assert.match(html, /All work/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 

@@ -1,6 +1,6 @@
 # Felix — AI-Native Product Builder & Creative Technologist
 
-An employer-facing portfolio showing how Felix turns unusual ideas into working products through product framing, interaction direction, AI-assisted implementation, critical review, and honest shipping. The current presentation is built as a field guide to Felix’s judgment: first the actual interaction decisions, then the wider archive.
+An employer-facing portfolio showing how Felix turns unusual ideas into working products through product framing, interaction direction, AI-assisted implementation, critical review, and honest shipping. The current presentation is a compact, keyboard-friendly field guide: each focused section has its own tab, with the full archive available when a reviewer wants it.
 
 [View the public portfolio](https://ijustcreate.github.io/felix-journey/) · [Browse Felix’s GitHub](https://github.com/ijustcreate?tab=repositories)
 
@@ -71,7 +71,7 @@ A Windows prototype that treats live desktop geometry as navigable game space.
 
 ## Complete evidence base
 
-The portfolio preserves all **23 public repositories** and **13 live browser experiences** in a compact work index after the evidence story. Native projects link to source when their real behavior depends on Windows, Electron, permissions, hardware, or local data; they are not replaced with misleading static mockups.
+The portfolio preserves all **23 public repositories** and **13 live browser experiences** in an **All work** tab after the evidence story. Native projects link to source when their real behavior depends on Windows, Electron, permissions, hardware, or local data; they are not replaced with misleading static mockups.
 
 The museum group—Space Adventure, Museum Animation Studio, Museum Newsroom, and Animal Audio Playground—demonstrates experience design beyond the screen: visitors, room geometry, hardware, staff workflow, reset, consent, and failure recovery.
 
@@ -80,6 +80,7 @@ The museum group—Space Adventure, Museum Animation Studio, Museum Newsroom, an
 The presentation applies Felix Flair without making the interface the subject:
 
 - evidence and product judgment before project quantity;
+- a compact tab rail with visible selected state, deep-linkable sections, and arrow-key navigation;
 - genuine project captures before generated illustration;
 - large, cinematic hierarchy and calm technical detail;
 - flat evidence structures instead of nested dashboards;
@@ -106,7 +107,7 @@ npm run lint
 npm test
 ```
 
-The rendered tests verify the candidate positioning, explicit human/AI responsibility split, three featured case studies, all 21 work-index entries, key external links, and required evidence assets.
+The rendered tests verify the candidate positioning, explicit human/AI responsibility split, six accessible portfolio tabs, the two flagship case studies, all 23 work-index entries, key external links, and required evidence assets.
 
 ## Publishing
 
