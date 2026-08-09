@@ -1,6 +1,6 @@
 # Felix — AI-Native Product Builder & Creative Technologist
 
-An employer-facing portfolio showing how Felix turns unusual ideas into working products through product framing, interaction direction, AI-assisted implementation, critical review, and honest shipping.
+An employer-facing portfolio showing how Felix turns unusual ideas into working products through product framing, interaction direction, AI-assisted implementation, critical review, and honest shipping. The current presentation is built as a field guide to Felix’s judgment: first the actual interaction decisions, then the wider archive.
 
 [View the public portfolio](https://ijustcreate.github.io/felix-journey/) · [Browse Felix’s GitHub](https://github.com/ijustcreate?tab=repositories)
 
@@ -10,11 +10,12 @@ An employer-facing portfolio showing how Felix turns unusual ideas into working 
 
 Felix works between product design, experience design, and implementation. His strongest territory is the ambiguous middle: the idea has promise, but it still needs an audience, interaction model, visual language, operating boundary, and testable form.
 
-The portfolio makes the human–AI contribution split explicit:
+The portfolio makes the human–AI contribution split explicit and observable:
 
 - **Felix owns** the product premise, audience, experience direction, visual judgment, domain constraints, critical review, publication boundary, and final decision.
 - **AI accelerates** implementation exploration, repetitive integration, debugging, test scaffolding, documentation, alternatives, and iteration speed.
 - The keystrokes may be shared. Responsibility for what ships remains human.
+- The portfolio uses Project Lantern and Behind Closed Doors Karaoke to show that working agreement in context: a decision, its consequence, and the resulting behavior—not just a claim about process.
 
 ## What Felix contributes
 
@@ -26,7 +27,23 @@ The portfolio makes the human–AI contribution split explicit:
 
 The language deliberately avoids claiming that Felix manually authored every line of code. The portfolio presents him as the person responsible for the intent, direction, evaluation, and release—not as a passive prompt writer or an unassisted solo engineer.
 
-## Featured case studies
+## Featured evidence packets
+
+### Project Lantern
+
+A public-space control center for the Children’s Museum of Stockton. It turns a donor board into a staff-ready system for display composition, multi-display assignment, scheduling, announcements, broadcast, revisions, and feedback.
+
+**Contribution focus:** directing the interaction model around the actual room: staff workflows, portrait and landscape screens, public readability, direct manipulation, offline state, live presentation, and recovery.
+
+**Evidence:** a public [live control room](https://ijustcreate.github.io/project-lantern/), a [public source repository](https://github.com/ijustcreate/project-lantern), production checks, fictional donor-demo content, multi-viewport verification, and documented implementation constraints.
+
+### Behind Closed Doors Karaoke
+
+A low-light karaoke venue system with a 4,196-song catalogue, singer interaction, shared queue, chat, menu editing, and a deliberately tactile speakeasy surface.
+
+**Contribution focus:** identifying the friction in a real moving venue, directing touch behavior, making role boundaries visible, protecting unfinished edits, preserving multilingual behavior, and keeping system messages calm under pressure.
+
+**Evidence:** a [live venue prototype](https://ijustcreate.github.io/behind-closed-doors-karaoke/), [public source](https://github.com/ijustcreate/behind-closed-doors-karaoke), mobile checks, admin-only menu selection, shared menu state, language fallback behavior, and a project handoff documenting the production path.
 
 ### Application Companion
 
@@ -54,7 +71,7 @@ A Windows prototype that treats live desktop geometry as navigable game space.
 
 ## Complete evidence base
 
-The portfolio preserves all **21 public repositories** and **11 live browser experiences** in a compact work index after the contribution story. Native projects link to source when their real behavior depends on Windows, Electron, permissions, hardware, or local data; they are not replaced with misleading static mockups.
+The portfolio preserves all **23 public repositories** and **13 live browser experiences** in a compact work index after the evidence story. Native projects link to source when their real behavior depends on Windows, Electron, permissions, hardware, or local data; they are not replaced with misleading static mockups.
 
 The museum group—Space Adventure, Museum Animation Studio, Museum Newsroom, and Animal Audio Playground—demonstrates experience design beyond the screen: visitors, room geometry, hardware, staff workflow, reset, consent, and failure recovery.
 
@@ -62,15 +79,16 @@ The museum group—Space Adventure, Museum Animation Studio, Museum Newsroom, an
 
 The presentation applies Felix Flair without making the interface the subject:
 
-- employer value before project quantity;
+- evidence and product judgment before project quantity;
 - genuine project captures before generated illustration;
 - large, cinematic hierarchy and calm technical detail;
 - flat evidence structures instead of nested dashboards;
 - visible status and clear link destinations;
 - restrained motion with reduced-motion support;
-- one slightly crooked pixel in an otherwise disciplined grid.
+- one slightly crooked pixel in an otherwise disciplined grid;
+- a deliberate field-notes relationship between a product, a real situation, the decision Felix directed, and the behavior that resulted.
 
-The employer-facing social card is generated editorial artwork. Product images used in the site are existing project-owned captures and are documented in [ASSET_MANIFEST.md](ASSET_MANIFEST.md).
+The current employer-facing social card, `public/og-v2.png`, is generated editorial artwork. Product images used in the site are existing project-owned captures or project-owned venue artwork and are documented in [ASSET_MANIFEST.md](ASSET_MANIFEST.md).
 
 ## Run and validate
 
@@ -99,11 +117,13 @@ The same source supports two delivery targets:
 
 ## Accuracy and privacy
 
-- Counts and links were reconciled against the August 2026 portfolio audit.
+- Counts and links were reconciled against the August 2026 portfolio audit, then extended with Project Lantern and Behind Closed Doors Karaoke.
 - The page does not claim commercial adoption, museum installation, production authentication, revenue, or measured business impact.
 - Emergent Complexity is described as fork-derived work retaining upstream AGPL obligations.
 - Application Companion is not presented as an automatic application-submission system or live OpenAI API integration.
 - Planet Smmith is a design document; its concept image is not gameplay evidence.
+- Project Lantern is an active museum prototype. Its portfolio captures use fictional donor-demo content, never real donor records.
+- Behind Closed Doors Karaoke is presented as a venue prototype. Its portfolio visuals show project-owned venue artwork rather than customer accounts, chat, queue, or personal-history data.
 - Captures containing personal interiors, desktop details, visitor media, applicant data, or client fields were excluded.
 - Watcher, Life, and One Pixel MMO remain aliases/modules rather than inflated project counts.
 

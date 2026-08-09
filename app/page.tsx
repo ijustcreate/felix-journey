@@ -11,6 +11,22 @@ type WorkItem = {
 
 const work: WorkItem[] = [
   {
+    name: "Project Lantern",
+    status: "Live",
+    area: "Public-space systems",
+    summary: "A museum donor board becomes a staff-ready control room for displays, schedules, broadcasts, and feedback.",
+    repo: "https://github.com/ijustcreate/project-lantern",
+    live: "https://ijustcreate.github.io/project-lantern/",
+  },
+  {
+    name: "Behind Closed Doors Karaoke",
+    status: "Live",
+    area: "Venue interaction",
+    summary: "A tactile karaoke and menu system designed for a low-light room, live roles, and multilingual use.",
+    repo: "https://github.com/ijustcreate/behind-closed-doors-karaoke",
+    live: "https://ijustcreate.github.io/behind-closed-doors-karaoke/",
+  },
+  {
     name: "Application Companion",
     status: "Live",
     area: "Human–AI workflow",
@@ -181,19 +197,33 @@ function ProjectLink({ href, children, primary = false }: { href: string; childr
   );
 }
 
+function EvidenceDetails({ title, question, children }: { title: string; question: string; children: React.ReactNode }) {
+  return (
+    <details className="evidence-details">
+      <summary>
+        <span>{title}</span>
+        <strong>{question}</strong>
+        <i aria-hidden="true">+</i>
+      </summary>
+      <div className="evidence-details__body">{children}</div>
+    </details>
+  );
+}
+
 export default function Home() {
   return (
     <>
-      <a className="skip-link" href="#contribution">Skip to my contribution</a>
+      <a className="skip-link" href="#thinking">Skip to how Felix thinks</a>
 
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="Felix portfolio, home">
           <span className="wordmark__pixel" />
-          <span>Felix / work</span>
+          <span>Felix / field notes</span>
         </a>
         <nav aria-label="Primary navigation">
-          <a href="#contribution">Contribution</a>
-          <a href="#case-studies">Case studies</a>
+          <a href="#thinking">How I think</a>
+          <a href="#lantern">Project Lantern</a>
+          <a href="#bcd">BCD Karaoke</a>
           <a href="#work">Work index</a>
           <a className="header-github" href="https://github.com/ijustcreate" target="_blank" rel="noreferrer">GitHub ↗</a>
         </nav>
@@ -202,231 +232,246 @@ export default function Home() {
       <main id="top">
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero__copy">
-            <p className="eyebrow">Creative technologist · AI-native product builder</p>
-            <h1 id="hero-title">I turn unusual ideas into <em>working products.</em></h1>
-            <p className="hero__lede">I’m Felix. I find the product inside an unfinished idea, shape how it should feel and behave, direct AI-assisted implementation, and carry the result to an honest demo or public release.</p>
+            <p className="eyebrow">Felix Embree · creative technologist · AI-native product builder</p>
+            <h1 id="hero-title">I make systems people can <em>feel their way through.</em></h1>
+            <p className="hero__lede">My work starts with a real situation: a museum staffer beside a TV wall, a singer holding a phone in a dark room, a community thread that needs care. I find the pressure in the moment, shape the interaction around it, and use AI to accelerate the build without giving away the judgment.</p>
             <div className="hero__actions">
-              <a className="button button--bright" href="#case-studies">Review case studies <span aria-hidden="true">↓</span></a>
-              <a className="button" href="https://github.com/ijustcreate?tab=repositories" target="_blank" rel="noreferrer">Browse my GitHub ↗</a>
+              <a className="button button--bright" href="#thinking">See how I think <span aria-hidden="true">↓</span></a>
+              <a className="button" href="https://ijustcreate.github.io/project-lantern/" target="_blank" rel="noreferrer">Open Project Lantern ↗</a>
             </div>
-            <p className="hero__disclosure">I lead the intent, direction, critique, constraints, and release judgment. AI materially accelerates implementation, debugging, testing, and documentation.</p>
+            <p className="hero__disclosure">Felix directs the product premise, experience, constraints, critique, and release decision. AI accelerates implementation, integration, debugging, testing, and documentation.</p>
           </div>
 
-          <figure className="hero-proof">
-            <div className="hero-proof__frame hero-proof__frame--main">
-              <img src={projectAsset("application-companion.png")} alt="Application Companion dashboard with fictitious example data" />
-              <span>Human–AI workflow</span>
+          <figure className="hero-stage" aria-label="Two featured interaction systems">
+            <div className="hero-stage__grid" aria-hidden="true" />
+            <div className="hero-stage__lantern">
+              <img src={projectAsset("project-lantern-board-editor.png")} alt="Project Lantern donor board editor with a portrait display preview" />
+              <span>Project Lantern / museum control room</span>
             </div>
-            <div className="hero-proof__frame hero-proof__frame--top">
-              <img src={projectAsset("video-store-backrooms.png")} alt="The Video Store Backrooms interface" />
-              <span>Community data → world</span>
+            <div className="hero-stage__bcd">
+              <img src={projectAsset("bcd-the-buzz-cocktail.png")} alt="The Buzz cocktail from Behind Closed Doors Karaoke" />
+              <div>
+                <small>BCD Karaoke</small>
+                <strong>Tap the drink.<br />Keep the night moving.</strong>
+              </div>
             </div>
-            <div className="hero-proof__frame hero-proof__frame--bottom">
-              <img src={projectAsset("desktop-reality.png")} alt="Desktop Reality renderer" />
-              <span>Desktop → game space</span>
-            </div>
-            <figcaption>Genuine project captures · privacy reviewed</figcaption>
+            <figcaption>Two new product stories · real projects · real constraints</figcaption>
           </figure>
 
           <dl className="proof-strip" aria-label="Portfolio evidence">
-            <div><dt>Public repositories</dt><dd>21</dd></div>
-            <div><dt>Live browser experiences</dt><dd>11</dd></div>
-            <div><dt>Working range</dt><dd>Web · desktop · spatial · museum</dd></div>
-            <div><dt>Build model</dt><dd>Human-directed · AI-accelerated</dd></div>
+            <div><dt>Public repositories</dt><dd>23</dd></div>
+            <div><dt>Live browser builds</dt><dd>13</dd></div>
+            <div><dt>New evidence</dt><dd>Museum control · venue interaction</dd></div>
+            <div><dt>Working model</dt><dd>Human-directed · AI-accelerated</dd></div>
           </dl>
         </section>
 
-        <section className="candidate-snapshot" aria-labelledby="snapshot-title">
-          <div>
-            <p className="eyebrow">Candidate snapshot</p>
-            <h2 id="snapshot-title">Creative direction that survives contact with reality.</h2>
-          </div>
-          <div className="candidate-snapshot__body">
-            <p>I work between product design, experience design, and implementation. My strength is turning a loose concept into a coherent object: a clear premise, a usable interaction, a distinct visual world, and something real enough to test.</p>
-            <dl className="fit-list">
-              <div><dt>Best fit</dt><dd>Creative technology · AI product exploration · experience prototyping</dd></div>
-              <div><dt>Strongest phase</dt><dd>Ambiguous idea → credible prototype</dd></div>
-              <div><dt>Recurring focus</dt><dd>Spatial interaction · playful systems · museums · privacy · humane tools</dd></div>
-            </dl>
-          </div>
-        </section>
-
-        <section className="contribution" id="contribution" aria-labelledby="contribution-title">
+        <section className="thinking" id="thinking" aria-labelledby="thinking-title">
           <header className="section-heading">
-            <p className="eyebrow">What I contribute</p>
-            <h2 id="contribution-title">The connective tissue between a strange idea and a thing people can use.</h2>
-            <p>I do more than prompt for output. I establish the premise, define the experience, direct the work, test the result, and decide what is honest enough to show.</p>
+            <p className="eyebrow">The thread behind the projects</p>
+            <h2 id="thinking-title">I do not begin with a screen. I begin with the moment the screen has to survive.</h2>
+            <p>Across the project conversations, the same pattern appears: notice the pressure, name it plainly, make the state visible, then keep refining until the interaction belongs to its environment.</p>
           </header>
 
-          <ol className="contribution-list">
+          <ol className="thinking__steps">
             <li>
               <span>01</span>
-              <h3>Find the product</h3>
-              <p>I turn loose ideas into audiences, environments, primary actions, constraints, and success criteria.</p>
-              <small>Dream Cabin · Space Adventure · Planet Smmith</small>
+              <h3>Watch the real context</h3>
+              <p>Who is holding the device? Who is waiting? What happens when the room gets loud, the screen gets small, or the system goes offline?</p>
+              <small>Museum staff · visitors · singers · hosts · displays</small>
             </li>
             <li>
               <span>02</span>
-              <h3>Shape the experience</h3>
-              <p>I direct hierarchy, interaction, language, visual tone, visible state, recovery, and the rhythm of use.</p>
-              <small>Recreate Space · ZenDeck · Museum Animation</small>
+              <h3>Find the pressure point</h3>
+              <p>I look for the part that is frustrating, ambiguous, too fragile, or quietly asking the user to do the system’s work.</p>
+              <small>“The menu overlaps” · “the canvas is unusable on phone” · “what is live?”</small>
             </li>
             <li>
               <span>03</span>
-              <h3>Direct AI implementation</h3>
-              <p>I break the work into decisions, provide context and constraints, inspect behavior, reject weak output, and steer integration.</p>
-              <small>Web · Electron · WebGPU · Windows · C#</small>
+              <h3>Make the action physical</h3>
+              <p>Controls should manipulate the thing they describe. A board moves on the board. A drink opens from its name. A schedule has a real timeline.</p>
+              <small>Direct manipulation · touch targets · visible consequences</small>
             </li>
             <li>
               <span>04</span>
-              <h3>Protect the human context</h3>
-              <p>I make deliberate calls about privacy, consent, rights, hardware, destructive actions, and what should remain local.</p>
-              <small>Comment Collector · Application Companion · Animal Audio</small>
+              <h3>Show the state, protect the person</h3>
+              <p>Live, offline, saved, queued, private, admin-only, and recoverable should never be a mystery. The interface carries that responsibility.</p>
+              <small>Muted offline events · role-bound controls · draft-safe saves</small>
             </li>
             <li>
               <span>05</span>
-              <h3>Finish with evidence</h3>
-              <p>I value real builds, tests, safe captures, documentation, working links, and visible limitations over polished claims.</p>
-              <small>21 public repos · 11 live experiences · verified CI</small>
+              <h3>Use AI as a fast studio</h3>
+              <p>I direct the constraints, inspect behavior, reject weak output, and keep iterating. The code may be shared; the product call stays human.</p>
+              <small>Context → critique → revision → verification</small>
             </li>
           </ol>
 
-          <aside className="responsibility-split" aria-labelledby="split-title">
-            <div className="responsibility-split__title">
+          <aside className="thinking__agreement" aria-labelledby="agreement-title">
+            <div>
               <p className="eyebrow">My AI working agreement</p>
-              <h3 id="split-title">Acceleration without surrendering authorship.</h3>
+              <h3 id="agreement-title">The keystrokes can be shared. The responsibility is not.</h3>
             </div>
-            <div>
-              <span>Felix owns</span>
-              <p>Product premise, audience, experience direction, visual judgment, domain constraints, critical review, publication boundaries, and the final call.</p>
-            </div>
-            <div>
-              <span>AI accelerates</span>
-              <p>Implementation exploration, repetitive integration, debugging, test scaffolding, documentation, alternatives, and iteration speed.</p>
-            </div>
-            <p className="responsibility-split__note">The keystrokes are shared. The responsibility is not.</p>
+            <p><strong>Felix owns</strong> the observation, product premise, interaction direction, safety boundary, taste, critique, and final decision to ship.</p>
+            <p><strong>AI accelerates</strong> implementation exploration, integration, debugging, test scaffolding, documentation, and iteration speed.</p>
           </aside>
         </section>
 
-        <section className="case-studies" id="case-studies" aria-labelledby="case-studies-title">
+        <section className="cases" aria-labelledby="cases-title">
           <header className="section-heading section-heading--compact">
-            <p className="eyebrow">Selected evidence</p>
-            <h2 id="case-studies-title">Three cases that show how I think.</h2>
-            <p>Each one separates the product decision from the implementation help—and keeps the unfinished edge visible.</p>
+            <p className="eyebrow">Two new evidence packets</p>
+            <h2 id="cases-title">Same instincts. Very different rooms.</h2>
+            <p>These are not just finished interfaces. They are records of how a loose prompt became a usable object through concrete product decisions.</p>
           </header>
 
-          <article className="case-study">
-            <header className="case-study__header">
-              <span className="case-study__number">01</span>
-              <div><p>Human–AI workflow · Live prototype</p><h3>Application Companion</h3></div>
-              <p className="case-study__thesis">A safer way to prepare an application with AI without surrendering user control.</p>
+          <article className="case-story case-story--lantern" id="lantern">
+            <header className="case-story__header">
+              <span className="case-story__number">01</span>
+              <div>
+                <p>Public-space interaction · staff systems · live display</p>
+                <h3>Project Lantern</h3>
+              </div>
+              <p className="case-story__thesis">A donor board is not a poster. It is a living public surface with staff, schedules, screens, content, and consequences.</p>
             </header>
-            <div className="case-study__body">
-              <figure className="case-study__visual">
-                <img src={projectAsset("application-companion.png")} alt="Application Companion dashboard using explicitly fictitious examples" loading="lazy" />
-                <figcaption>Genuine product capture · fictitious example data</figcaption>
-              </figure>
-              <div className="case-study__story">
-                <div><span>What I saw</span><p>Most application automation asks for sensitive material too early or tries to complete a consequential action for the user.</p></div>
-                <div><span>My contribution</span><p>I framed a guided preparation tool, directed the onboarding and handoff flow, and set the privacy boundary around accounts, documents, credentials, autofill, and submission.</p></div>
-                <div><span>What shipped</span><p>A local-first prompt builder with sanitized import/export, a safe employer-page handoff, five tests, a privacy audit, and a live public build.</p></div>
-                <blockquote><span>Important decision</span>No API-key field. No document upload. No automatic submission. The user stays in the loop.</blockquote>
-                <div className="case-study__actions">
-                  <ProjectLink href="https://ijustcreate.github.io/application-companion/" primary>Open live prototype</ProjectLink>
-                  <ProjectLink href="https://github.com/ijustcreate/application-companion">Review source</ProjectLink>
+
+            <div className="case-story__layout">
+              <div className="lantern-gallery">
+                <figure className="lantern-gallery__main">
+                  <img src={projectAsset("project-lantern-board-editor.png")} alt="Project Lantern board editor showing an editable portrait donor display" loading="lazy" />
+                  <figcaption>Board Editor · display composition is directly editable</figcaption>
+                </figure>
+                <figure>
+                  <img src={projectAsset("project-lantern-schedule.png")} alt="Project Lantern schedule showing boards, announcements, and broadcast events" loading="lazy" />
+                  <figcaption>Schedule · staff can see what is next, live, or conflicted</figcaption>
+                </figure>
+                <figure>
+                  <img src={projectAsset("project-lantern-broadcast.png")} alt="Project Lantern broadcast studio with a movable live composition" loading="lazy" />
+                  <figcaption>Broadcast · the preview is a manipulable composition</figcaption>
+                </figure>
+              </div>
+
+              <div className="case-story__evidence">
+                <div className="case-facts">
+                  <p><span>Context</span> Children’s Museum of Stockton prototype</p>
+                  <p><span>Product question</span> How does a public display stay practical for the person running it?</p>
+                  <p><span>What changed</span> A donor wall became a control center for boards, displays, schedules, announcements, broadcast, and feedback.</p>
+                  <p><span>Evidence</span> Live prototype, source, production checks, fictional demo data, and multi-viewport verification.</p>
+                </div>
+
+                <div className="decision-stack">
+                  <p className="eyebrow">Decisions I directed</p>
+                  <EvidenceDetails title="Design for the room, not the mockup" question="What happens when there are staff, multiple displays, and a waiting group?">
+                    <p>One coherent workspace made the actual operating loop visible: build the board, assign it to a display, schedule it, preview it, then publish. The important unit is the room and its people—not a single pretty screen.</p>
+                  </EvidenceDetails>
+                  <EvidenceDetails title="Let the output obey the editor" question="Why should an operator trust a drag handle?">
+                    <p>The board geometry and live display renderer were treated as one contract. A change to position, crop, frame, or composition must carry through to the real output instead of becoming a misleading preview.</p>
+                  </EvidenceDetails>
+                  <EvidenceDetails title="Turn invisible conditions into state" question="How should an offline display or a schedule conflict feel?">
+                    <p>Offline targets visibly mute their scheduled material while preserving type cues. The schedule distinguishes board, announcement, and broadcast layers, with live and next-up information designed for operational clarity.</p>
+                  </EvidenceDetails>
+                </div>
+
+                <div className="case-story__actions">
+                  <ProjectLink href="https://ijustcreate.github.io/project-lantern/" primary>Open live control room</ProjectLink>
+                  <ProjectLink href="https://github.com/ijustcreate/project-lantern">Review source</ProjectLink>
                 </div>
               </div>
             </div>
           </article>
 
-          <article className="case-study case-study--community">
-            <header className="case-study__header">
-              <span className="case-study__number">02</span>
-              <div><p>Community data · Privacy · Editorial systems</p><h3>Comment Collector → Video Store</h3></div>
-              <p className="case-study__thesis">A Facebook conversation became a public world—without turning the people in it into content.</p>
+          <article className="case-story case-story--bcd" id="bcd">
+            <header className="case-story__header">
+              <span className="case-story__number">02</span>
+              <div>
+                <p>Venue interaction · touch systems · role-aware behavior</p>
+                <h3>Behind Closed Doors Karaoke</h3>
+              </div>
+              <p className="case-story__thesis">A menu and songbook have to feel right in a dark, busy room—while quietly handling real permissions, live changes, and human mistakes.</p>
             </header>
-            <div className="transformation" aria-label="Comment-to-store transformation">
-              <div><span>Input</span><strong>679 comments</strong><small>collected locally</small></div>
-              <i aria-hidden="true">→</i>
-              <div><span>Judgment</span><strong>Names removed</strong><small>raw discussion stays private</small></div>
-              <i aria-hidden="true">→</i>
-              <div><span>Outcome</span><strong>601 films</strong><small>in an explorable store</small></div>
-            </div>
-            <div className="case-study__body">
-              <div className="dual-visual">
-                <figure><img src={projectAsset("facebook-comment-collector.png")} alt="Facebook Comment Collector in an empty, privacy-safe state" loading="lazy" /><figcaption>Local collection</figcaption></figure>
-                <figure><img src={projectAsset("video-store-backrooms.png")} alt="Video Store Backrooms interface built from reviewed recommendations" loading="lazy" /><figcaption>Public derivative</figcaption></figure>
-              </div>
-              <div className="case-study__story">
-                <div><span>What I saw</span><p>Hundreds of film recommendations were trapped in an unwieldy social thread, alongside names, links, and personal context that should not become a public dataset.</p></div>
-                <div><span>My contribution</span><p>I defined the path from privacy-first capture to reviewed output, set names off by default, directed the information architecture, and chose a video-store metaphor that made the result inviting rather than clinical.</p></div>
-                <div><span>What shipped</span><p>A public browser extension and a separate live experience containing only the anonymized, reviewed derivative.</p></div>
-                <div className="case-study__actions">
-                  <ProjectLink href="https://ijustcreate.github.io/video-store-backrooms/" primary>Enter the store</ProjectLink>
-                  <ProjectLink href="https://github.com/ijustcreate/facebook-comment-collector">Collector source</ProjectLink>
-                  <ProjectLink href="https://github.com/ijustcreate/video-store-backrooms">Store source</ProjectLink>
-                </div>
-              </div>
-            </div>
-          </article>
 
-          <article className="case-study">
-            <header className="case-study__header">
-              <span className="case-study__number">03</span>
-              <div><p>Creative systems · Desktop integration</p><h3>Desktop Reality</h3></div>
-              <p className="case-study__thesis">The desktop stopped being a container and became the stage.</p>
-            </header>
-            <div className="case-study__body">
-              <figure className="case-study__visual">
-                <img src={projectAsset("desktop-reality.png")} alt="Privacy-safe Desktop Reality renderer state" loading="lazy" />
-                <figcaption>Genuine renderer capture · real desktop data excluded</figcaption>
-              </figure>
-              <div className="case-study__story">
-                <div><span>What I saw</span><p>Operating-system geometry—windows, edges, icons, and chrome—could be material for play instead of furniture around the game.</p></div>
-                <div><span>My contribution</span><p>I framed desktop geometry as a mechanic, directed the visual and interaction language, steered AI-assisted integration across Electron, PowerShell, and Canvas, and defined the privacy boundary around local window data.</p></div>
-                <div><span>What shipped</span><p>A public Windows prototype with context-isolated integration, syntax and publication checks, and a multi-window smoke run. A related C#/Electron Geometry Wars project carries 24 core logic tests.</p></div>
-                <blockquote><span>Why source, not a fake demo?</span>The real behavior depends on the Windows desktop. A static web mockup would misrepresent the work.</blockquote>
-                <div className="case-study__actions">
-                  <ProjectLink href="https://github.com/ijustcreate/desktop-reality" primary>Review Desktop Reality</ProjectLink>
-                  <ProjectLink href="https://github.com/ijustcreate/desktop-geometry-wars">Related prototype</ProjectLink>
+            <div className="case-story__layout case-story__layout--bcd">
+              <div className="bcd-stage">
+                <figure className="bcd-stage__photo">
+                  <img src={projectAsset("bcd-back-bar-bottles.png")} alt="Behind Closed Doors Karaoke back-bar visual" loading="lazy" />
+                  <figcaption>Venue atmosphere is part of the interface, not decoration</figcaption>
+                </figure>
+                <div className="bcd-stage__menu" aria-label="A stylized excerpt of the Behind Closed Doors menu interface">
+                  <p>Behind Closed Doors</p>
+                  <span>Specialty drink menu</span>
+                  <div><strong>The Buzz</strong><em>$12</em><small>Botanical · bright · just strange enough</small></div>
+                  <div><strong>Midnight Signal</strong><em>$13</em><small>Dark fruit · smoke · low light</small></div>
+                  <div><strong>After Hours</strong><em>$11</em><small>Warm spice · citrus · keep singing</small></div>
+                  <footer>Tap a drink to see it · Saved locally · Draft safe</footer>
+                </div>
+                <figure className="bcd-stage__cocktail">
+                  <img src={projectAsset("bcd-the-buzz-cocktail.png")} alt="The Buzz sample cocktail artwork from Behind Closed Doors Karaoke" loading="lazy" />
+                </figure>
+              </div>
+
+              <div className="case-story__evidence">
+                <div className="case-facts">
+                  <p><span>Context</span> A real karaoke venue with phones, hosts, drinks, low light, and interrupted attention.</p>
+                  <p><span>Product question</span> How does a playful night-of tool stay understandable while the venue is moving?</p>
+                  <p><span>Working surface</span> 4,196-song catalogue, shared queue, singer history, menu editing, chat, and venue settings.</p>
+                  <p><span>Evidence</span> Live prototype, source, mobile checks, translation behavior, and admin-only shared menu state.</p>
+                </div>
+
+                <div className="decision-stack">
+                  <p className="eyebrow">Decisions I directed</p>
+                  <EvidenceDetails title="Touch the thing, not a proxy" question="What should happen when someone wants to see a drink?">
+                    <p>The drink name itself opens the photo and the popup remains open until the person dismisses it. Interaction is attached to the object, not hidden in a tiny icon or allowed to accidentally flip the menu away.</p>
+                  </EvidenceDetails>
+                  <EvidenceDetails title="Make permission part of the product" question="Who gets to change the night’s visible menu?">
+                    <p>Menu selection is an admin action and the chosen menu is shared with everyone. Editing becomes a real save flow with a name and protection against leaving unsaved work behind.</p>
+                  </EvidenceDetails>
+                  <EvidenceDetails title="Treat language and state as live behavior" question="What changes when the user changes language or reconnects?">
+                    <p>Current built-in menus, achievements, account controls, and virtualized song-list actions were made to translate in context with an English fallback. Background syncing stays quiet instead of frightening a singer with a toast after every message.</p>
+                  </EvidenceDetails>
+                </div>
+
+                <div className="case-story__actions">
+                  <ProjectLink href="https://ijustcreate.github.io/behind-closed-doors-karaoke/" primary>Open live venue prototype</ProjectLink>
+                  <ProjectLink href="https://github.com/ijustcreate/behind-closed-doors-karaoke">Review source</ProjectLink>
                 </div>
               </div>
             </div>
           </article>
         </section>
 
-        <section className="public-space" aria-labelledby="public-space-title">
+        <section className="transfer" aria-labelledby="transfer-title">
           <header className="section-heading">
-            <p className="eyebrow">Designed for public spaces</p>
-            <h2 id="public-space-title">I design the room, reset, staff workflow, and failure state—not just the screen.</h2>
-            <p>Museum work changes the definition of “usable.” A first-time visitor, unusual hardware, the next group waiting, and an operator recovering the system are all part of the product.</p>
+            <p className="eyebrow">The pattern transfers</p>
+            <h2 id="transfer-title">Different products. Same standards of care.</h2>
+            <p>These three projects show the same direction at another scale: protect the person, make the system legible, and ship only what the evidence can support.</p>
           </header>
-          <div className="public-space__grid">
-            <article><img src={projectAsset("space-adventure.png")} alt="Space Adventure four-role cockpit" loading="lazy" /><span>Four meaningful roles</span><h3>Space Adventure</h3><p>Crew coordination, staff tuning, session pacing, and idle return.</p><ProjectLink href="https://ijustcreate.github.io/space-adventure/">Open live</ProjectLink></article>
-            <article><img src={projectAsset("museum-animation-studio.png")} alt="Museum Animation Studio kid mode" loading="lazy" /><span>One clear primary action</span><h3>Museum Animation Studio</h3><p>Capture-first hierarchy, recoverable projects, humane empty states.</p><ProjectLink href="https://github.com/ijustcreate/museum-animation-studio">Review source</ProjectLink></article>
-            <article><img src={projectAsset("museum-newsroom.png")} alt="Museum Newsroom control room with virtual devices" loading="lazy" /><span>Visible operational state</span><h3>Museum Newsroom</h3><p>Physical device mapping, virtual fallbacks, visitor turnover.</p><ProjectLink href="https://github.com/ijustcreate/museum-newsroom">Review source</ProjectLink></article>
-            <article><img src={projectAsset("animal-audio.png")} alt="Animal Audio Playground using its synthetic Signal Owl sample" loading="lazy" /><span>Consent-aware evidence</span><h3>Animal Audio Playground</h3><p>Touch, controllers, multilingual use, and synthetic public media.</p><ProjectLink href="https://github.com/ijustcreate/animal-audio-playground">Review source</ProjectLink></article>
+          <div className="transfer__grid">
+            <article>
+              <img src={projectAsset("application-companion.png")} alt="Application Companion dashboard with fictitious example data" loading="lazy" />
+              <span>Human–AI workflow</span>
+              <h3>Application Companion</h3>
+              <p>Keep a consequential task human-led: no document upload, no API key, no automatic submission.</p>
+              <ProjectLink href="https://ijustcreate.github.io/application-companion/">Open live</ProjectLink>
+            </article>
+            <article>
+              <img src={projectAsset("video-store-backrooms.png")} alt="The Video Store Backrooms interface" loading="lazy" />
+              <span>Privacy → public artifact</span>
+              <h3>Comment Collector → Video Store</h3>
+              <p>679 private-context comments became 601 reviewed film recommendations without publishing the people inside the thread.</p>
+              <ProjectLink href="https://ijustcreate.github.io/video-store-backrooms/">Enter the store</ProjectLink>
+            </article>
+            <article>
+              <img src={projectAsset("desktop-reality.png")} alt="Desktop Reality renderer" loading="lazy" />
+              <span>Creative systems</span>
+              <h3>Desktop Reality</h3>
+              <p>Make the desktop a stage while keeping the local-world boundary explicit instead of faking a web demo.</p>
+              <ProjectLink href="https://github.com/ijustcreate/desktop-reality">Review source</ProjectLink>
+            </article>
           </div>
-        </section>
-
-        <section className="method" aria-labelledby="method-title">
-          <header>
-            <p className="eyebrow">How I work</p>
-            <h2 id="method-title">Fast enough to learn.<br />Careful enough to trust.</h2>
-          </header>
-          <ol>
-            <li><span>01</span><h3>Frame</h3><p>Name the actual person, environment, primary action, and risk.</p></li>
-            <li><span>02</span><h3>Direct</h3><p>Give AI concrete context, examples, constraints, and a standard to meet.</p></li>
-            <li><span>03</span><h3>Interrogate</h3><p>Use the thing. Find where the claim, interaction, or implementation breaks.</p></li>
-            <li><span>04</span><h3>Refine</h3><p>Keep the useful weirdness. Remove noise. Make state and consequences visible.</p></li>
-            <li><span>05</span><h3>Ship honestly</h3><p>Test, document, protect private material, and label unfinished work accurately.</p></li>
-          </ol>
         </section>
 
         <section className="work-index" id="work" aria-labelledby="work-title">
           <header className="section-heading section-heading--compact">
             <p className="eyebrow">Complete public work index</p>
-            <h2 id="work-title">Breadth after depth.</h2>
+            <h2 id="work-title">Breadth after proof.</h2>
             <p>Every public repository has a real destination. “Live” means a reachable browser experience; desktop and source projects link to the implementation they actually require.</p>
           </header>
           <div className="work-index__header" aria-hidden="true"><span>Project</span><span>Contribution arena</span><span>Evidence</span></div>
@@ -447,10 +492,10 @@ export default function Home() {
         </section>
 
         <section className="honest-boundary" aria-labelledby="boundary-title">
-          <div><p className="eyebrow">What the links prove</p><h2 id="boundary-title">I would rather leave a gap than manufacture a claim.</h2></div>
+          <div><p className="eyebrow">Proof, not theatre</p><h2 id="boundary-title">I call a prototype a prototype—and make the next test obvious.</h2></div>
           <div>
-            <p>These are working prototypes, public source projects, and design documents—not invented production services. Native products remain source-based when their behavior depends on Windows, Electron, permissions, hardware, or local data.</p>
-            <p>Concept art is labeled. Personal interiors, desktop information, visitor media, applicant data, and client details were excluded from this presentation. Three remembered project names remain unpublished because the correct artifacts could not be identified safely.</p>
+            <p>These links are working prototypes, public source projects, and design documents. I do not invent adoption, revenue, or production claims. Native work remains source-based when its behavior depends on Windows, hardware, permissions, or local data.</p>
+            <p>Concept art is labeled. Personal interiors, private conversations, applicant material, visitor media, donor records, and client details stay out of this portfolio. The point is to show the judgment, not expose the people around it.</p>
           </div>
         </section>
 
@@ -460,15 +505,15 @@ export default function Home() {
           <p>I’m most useful where creative technology, AI interaction, spatial systems, playful tools, and real human environments overlap—when an idea has promise but still needs a form people can see, use, question, and improve.</p>
           <div className="hero__actions">
             <a className="button button--bright" href="https://github.com/ijustcreate?tab=repositories" target="_blank" rel="noreferrer">Review my GitHub ↗</a>
-            <a className="button" href="#case-studies">Return to case studies ↑</a>
+            <a className="button" href="#thinking">Return to the method ↑</a>
           </div>
           <blockquote>“The person with the knife gets the final vote.”<cite>— Rollwright, keeping software close to reality</cite></blockquote>
         </section>
       </main>
 
       <footer>
-        <a className="wordmark" href="#top"><span className="wordmark__pixel" /><span>Felix / work</span></a>
-        <p>Felix set the direction. AI accelerated the build. The responsibility for what appears here is human.</p>
+        <a className="wordmark" href="#top"><span className="wordmark__pixel" /><span>Felix / field notes</span></a>
+        <p>Felix sets the direction. AI accelerates the build. The responsibility for what appears here is human.</p>
         <p>Portfolio evidence reviewed · August 2026</p>
       </footer>
     </>

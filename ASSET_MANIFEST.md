@@ -6,7 +6,7 @@ Privacy screen: selected files contain no surrounding desktop, taskbar, notifica
 
 ## Employer-facing social card
 
-`public/og-employer.png` is newly generated editorial artwork for link previews. It contains the exact positioning used by the revised portfolio—“Felix”, “I turn unusual ideas into working products”, and “Creative technologist · AI-native product builder”—on the same graphite, warm-white, acid-lime, and cyan visual system. It is presentation artwork, not project evidence or a product screenshot. The earlier `public/og.png` journey map remains an unused archival asset.
+`public/og-v2.png` is newly generated editorial artwork for link previews. It contains the revised positioning used by the portfolio—“Felix Embree”, “I make systems people can feel their way through”, and “Creative technologist · AI-native product builder”—in a graphite, warm-white, acid-lime, cyan, and amber visual system. It is presentation artwork, not project evidence or a product screenshot. `public/og-employer.png` and the earlier `public/og.png` remain archival assets.
 
 | Project | Source path | Destination | Classification | Review note |
 | --- | --- | --- | --- | --- |
@@ -27,6 +27,11 @@ Privacy screen: selected files contain no surrounding desktop, taskbar, notifica
 | Application Companion | `C:\Users\17148\Desktop\Codex Projects\Application Companion\docs\application-companion-dashboard.png` | `public/projects/application-companion.png` | Genuine product screenshot | The screen explicitly identifies its fictitious examples; no real applicant documents or accounts. |
 | Desktop Reality | `C:\Users\17148\Desktop\Codex Projects\Desktop Reality\docs\screenshots\desktop-sortie.png` | `public/projects/desktop-reality.png` | Genuine product screenshot | Privacy-safe renderer/loading state; no real desktop windows, titles, paths, or icons. |
 | Desktop Geometry Wars | `C:\Users\17148\Desktop\Codex Projects\Desktop Geometry Wars\docs\screenshots\desktop-geometry-wars.png` | `public/projects/desktop-geometry-wars.png` | Genuine application-only screenshot | Game window only; no surrounding desktop or user data. |
+| Project Lantern — Board Editor | `C:\Users\17148\Desktop\Recognition Boards\public\assets\help\board-editor.png` | `public/projects/project-lantern-board-editor.png` | Genuine product screenshot | Public prototype with fictional donor names and museum-owned demo content; no real donor records. |
+| Project Lantern — Schedule | `C:\Users\17148\Desktop\Recognition Boards\public\assets\help\schedule.png` | `public/projects/project-lantern-schedule.png` | Genuine product screenshot | Public prototype schedule with demo events; no visitor media or operational credentials. |
+| Project Lantern — Broadcast | `C:\Users\17148\Desktop\Recognition Boards\public\assets\help\broadcast.png` | `public/projects/project-lantern-broadcast.png` | Genuine product screenshot | Public prototype showing a no-camera source state; no live visitor or staff media. |
+| Behind Closed Doors Karaoke — The Buzz | `C:\Users\17148\Desktop\BCD Karaokoe Site\behind-closed-doors-codex-handoff\assets\the-buzz-cocktail.png` | `public/projects/bcd-the-buzz-cocktail.png` | Project-owned venue artwork | Cocktail artwork used to establish the real low-light venue context; no customers, accounts, chat, or queue data. |
+| Behind Closed Doors Karaoke — Back bar | `C:\Users\17148\Desktop\BCD Karaokoe Site\behind-closed-doors-codex-handoff\assets\back-bar-bottles.png` | `public/projects/bcd-back-bar-bottles.png` | Project-owned venue artwork | Back-bar image used as contextual visual support; no customer or operational data. |
 
 ## Deliberate omissions
 
