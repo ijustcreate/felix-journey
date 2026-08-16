@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f18">
+  <title>Emergent & AI Systems Evaluation — Felix Work Example</title>
+  <meta name="description" content="A case study using seeded experiments, deterministic replay, checksums, checkpoints and causal humility to evaluate complex systems.">
+  <meta property="og:title" content="Emergent & AI Systems Evaluation — Felix Work Example">
+  <meta property="og:description" content="A case study using seeded experiments, deterministic replay, checksums, checkpoints and causal humility to evaluate complex systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ijustcreate.github.io/felix-journey/work/emergent-systems-evaluation/">
+  <link rel="canonical" href="https://ijustcreate.github.io/felix-journey/work/emergent-systems-evaluation/">
+  <meta property="og:image" content="https://ijustcreate.github.io/felix-journey/og-v2.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles-core.css">
+<link rel="stylesheet" href="../assets/styles-layout.css">
+<link rel="stylesheet" href="../assets/styles-demos.css">
+<link rel="stylesheet" href="../assets/styles-tail.css">
+</head>
+<body class="" style="--accent:#c7ff4a">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Felix work examples home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Felix <small>QA · AI · Interactive systems</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Work examples">
+        <a href="../index.html" >Work examples</a>
+<a href="../agent-evaluation/">AI agent</a>
+<a href="../creator-tool-quality/">Creator QA</a>
+<a href="../complex-bug-investigation/">Bug investigation</a>
+<a href="../field-ux-analysis/">Field UX</a>
+<a href="../emergent-systems-evaluation/" aria-current="page">Emergent systems</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero compact">
+      <div class="shell hero-inner">
+        <div>
+          <p class="eyebrow">Case study 05 · Emergent & AI systems evaluation</p>
+          <h1>Spectacle is an observation, not a conclusion.</h1>
+          <p class="hero-lede">Emergent Complexity studies persistent simulation patterns with seeded runs, exact replay, checkpoints, heuristic classification and explicit uncertainty.</p>
+          <div class="hero-actions"><a class="button accent" href="#replay">Run deterministic replay</a><a class="button ghost icon" href="https://ijustcreate.github.io/emergent-complexity/">Open the simulation</a></div>
+        </div>
+        <aside class="hero-panel" aria-label="Case study signals">
+          <p class="panel-label">Evaluation surface</p>
+          <div class="signal-list"><div class="signal-row"><span class="signal-dot"></span><span>Seed</span><code>REPRODUCIBLE</code></div><div class="signal-row"><span class="signal-dot"></span><span>State</span><code>FIXED POINT</code></div><div class="signal-row"><span class="signal-dot"></span><span>Replay</span><code>CHECKSUM</code></div><div class="signal-row"><span class="signal-dot"></span><span>Claim</span><code>BOUNDED</code></div></div>
+          <p class="hero-note">Claims link back to public code, documentation, or executable behavior.</p>
+        </aside>
+      </div>
+    </section><section class="section">
+  <div class="shell case-layout">
+    <article class="case-body">
+      <section class="reveal">
+        <p class="kicker">Evaluation problem</p><h2>Complex behavior invites premature mythology.</h2>
+        <p class="lead">A particle cloud can appear to hunt, protect, reproduce or collaborate. An AI output can appear to reason, understand or intend. In both cases, visual or linguistic plausibility is evidence of an output—not automatic evidence of the story we tell about it.</p>
+        <p>Emergent Complexity keeps a deliberate gap between persistent measurable patterns and claims about agency. “Entity” means a tracked simulation structure. Classification is heuristic. Uncertainty reduces confidence in irreversible interventions. Seeded experiments, checkpoints and replay checksums make surprising behavior inspectable rather than mystical.</p>
+        <div class="story-grid">
+          <article class="story-card"><strong>Observation</strong><p>A cohesive pattern persisted for a measurable duration.</p></article>
+          <article class="story-card"><strong>Interpretation</strong><p>The pattern may exhibit behavior consistent with an agent candidate.</p></article>
+          <article class="story-card"><strong>Causal test</strong><p>Intervene, replay and compare against a controlled baseline.</p></article>
+          <article class="story-card"><strong>Claim boundary</strong><p>Report confidence and alternatives; do not upgrade metaphor into fact.</p></article>
+        </div>
+        <figure class="evidence-shot">
+          <img src="https://raw.githubusercontent.com/ijustcreate/emergent-complexity/main/docs/screenshots/entity-life.png" alt="Entity Life WebGPU particle simulation with laboratory controls">
+          <div class="shot-fallback" aria-hidden="true">
+      <div class="fallback-ui">
+        <div class="fallback-rail">
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div>
+        </div>
+        <div class="fallback-panel">
+          <p class="panel-label">Entity Life · particle laboratory</p>
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line" style="width:82%"></div>
+          <div class="fake-grid"><div class="fake-cell"></div><div class="fake-cell"></div><div class="fake-cell"></div></div>
+        </div>
+      </div>
+    </div>
+          <figcaption>Real project capture. The laboratory adds deterministic experiments, entity tools and cautious causal evaluation to the simulation.</figcaption>
+        </figure>
+      </section>
+
+      <section class="reveal" id="replay">
+        <p class="kicker">Interactive deterministic specimen</p><h2>Same seed. Same steps. Same state.</h2>
+        <p>The browser demo below uses integer state and a seeded generator. Reset returns to the same initial checksum; advancing the same number of steps produces the same later checksum. That contract lets a team reproduce the surprising thing before arguing about what the surprising thing means.</p>
+        <div class="demo-panel particle-stage">
+          <div class="particle-canvas-wrap"><canvas id="particle-canvas" width="820" height="390" aria-label="Deterministic particle simulation"></canvas></div>
+          <div class="particle-controls">
+            <div class="readout"><small>Seed</small><strong id="particle-seed">1337</strong></div>
+            <div class="readout"><small>Step</small><strong id="particle-step">0</strong></div>
+            <div class="readout"><small>Checksum</small><strong id="particle-checksum">—</strong></div>
+            <button class="button accent small" type="button" id="particle-toggle">Pause</button>
+            <button class="button ghost small" type="button" id="particle-advance">Advance 120 steps</button>
+            <button class="button ghost small" type="button" id="particle-reset">Reset same seed</button>
+            <button class="button ghost small" type="button" id="particle-new-seed">Use new seed</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Evaluation lifecycle</p><h2>Move from particles to claims one gate at a time.</h2>
+        <div class="process">
+          <div class="process-step"><span class="process-index">01</span><div><h3>Detect structure</h3><p>Density, cohesion, persistence and stability establish whether a pattern is measurable.</p></div></div>
+          <div class="process-step"><span class="process-index">02</span><div><h3>Track through time</h3><p>Identity, trajectory and change distinguish a persistent structure from a transient visual accident.</p></div></div>
+          <div class="process-step"><span class="process-index">03</span><div><h3>Classify with uncertainty</h3><p>Behavioral labels remain heuristic and expose confidence rather than impersonating scientific certainty.</p></div></div>
+          <div class="process-step"><span class="process-index">04</span><div><h3>Intervene reversibly</h3><p>Compare controlled changes, preserve checkpoints and reduce confidence when the intervention destroys future possibilities.</p></div></div>
+          <div class="process-step"><span class="process-index">05</span><div><h3>Reproduce before generalizing</h3><p>Replay exact state, compare checksums, vary seeds and separate one compelling run from a robust finding.</p></div></div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Transfer to AI evaluation</p><h2>The same intellectual hygiene applies to model behavior.</h2>
+        <table class="matrix"><thead><tr><th>Simulation question</th><th>AI evaluation analogue</th></tr></thead><tbody>
+          <tr><td><strong>Can the state be replayed?</strong></td><td>Can the prompt, model/version, tools, context and trajectory be reconstructed?</td></tr>
+          <tr><td><strong>Did a persistent structure form?</strong></td><td>Does the capability recur across paraphrases, seeds and challenge sets?</td></tr>
+          <tr><td><strong>Is the label observational or interpretive?</strong></td><td>Are we measuring task success or inferring reasoning/understanding from fluent output?</td></tr>
+          <tr><td><strong>What changed after intervention?</strong></td><td>Does removing context, changing tools or perturbing instructions reveal the causal dependency?</td></tr>
+          <tr><td><strong>What is the cost of being wrong?</strong></td><td>Should uncertainty reduce autonomy, require verification or block an irreversible action?</td></tr>
+        </tbody></table>
+        <blockquote>A compelling pattern can deserve investigation without deserving worship.<cite>Causal-humility principle</cite></blockquote>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Repository evidence</p><h2>Verification exists as an executable contract.</h2>
+        <p>The repository includes a deterministic reference engine, checkpoint download/restore, seeded runs and a verification script that executes 10,000 particles for 1,000 steps twice and compares the complete result. CPU, 2D GPU and 3D GPU surfaces share the same evaluation concepts, while detector coverage and hybrid-life work remain explicitly experimental.</p>
+        <div class="repo-links"><a class="button light icon" href="https://github.com/ijustcreate/emergent-complexity/blob/main/scripts/verify-determinism.mjs">Inspect deterministic check</a><a class="button light icon" href="https://github.com/ijustcreate/emergent-complexity/blob/main/docs/causal-humility-engine.md">Read causal-humility design</a><a class="button light icon" href="https://github.com/ijustcreate/emergent-complexity">Inspect repository</a></div>
+        <p class="note">The project is a Felix-directed fork of SandboxScience and retains its upstream history and AGPL obligations. The case study does not claim biological life, consciousness or validated agency.</p>
+      </section>
+    </article>
+    <aside class="case-sidebar" aria-label="Case study details">
+      <div class="side-card">
+        <h3>Use this page</h3>
+        <p>Send this direct link with proposals involving the same risk pattern.</p>
+        <button class="button small" type="button" data-copy="url">Copy page link</button>
+        <button class="button small light" type="button" data-copy="summary" data-summary="An evaluation case study for complex, nondeterministic-looking systems. Emergent Complexity combines seeded runs, fixed-point state, replay checksums, checkpoints, heuristic entity classification, and explicit uncertainty. The interactive specimen demonstrates the core principle: a compelling pattern is an observation; claims about agency, intelligence, or causality require reproducible evidence.">Copy Upwork summary</button>
+      </div>
+      <div class="side-card">
+        <h3>Evidence</h3>
+        <dl class="side-meta">
+          <div><dt>Project</dt><dd>Emergent Complexity: Entity Life</dd></div>
+          <div><dt>Contribution</dt><dd>Evaluation framing, experiment design, causal-humility direction and AI-assisted implementation review</dd></div>
+          <div><dt>Status</dt><dd>Working simulation and deterministic engine; entity detection remains experimental</dd></div>
+        </dl>
+        <a class="button small light icon" href="https://ijustcreate.github.io/emergent-complexity/">Open live project</a>
+        <a class="button small light icon" href="https://github.com/ijustcreate/emergent-complexity">Inspect repository</a>
+      </div>
+      <div class="side-card">
+        <h3>Authorship note</h3>
+        <p>Felix owns product direction, risk framing, evaluation, critical review, and release judgment. Implementation is AI-assisted and inspectable in the linked repositories.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="cta-band"><div class="shell cta-inner"><div><h2>Useful for AI evaluation, simulation and research-prototype proposals.</h2><p>It demonstrates reproducibility, confidence discipline, causal testing and the distinction between a persuasive output and a justified claim.</p></div><a class="button" href="../index.html">Return to all work examples →</a></div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Public work examples · Real repositories · Limitations left visible · <span class="current-year"></span></p>
+      <div class="footer-links">
+        <a href="https://ijustcreate.github.io/felix-journey/">Full portfolio</a>
+        <a href="https://github.com/ijustcreate?tab=repositories">GitHub</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/site-core.js" defer></script>
+<script src="../assets/site-particle.js" defer></script>
+</body>
+</html>
