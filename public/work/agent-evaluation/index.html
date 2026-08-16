@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f18">
+  <title>AI Agent Evaluation — Felix Work Example</title>
+  <meta name="description" content="A public case study demonstrating evaluation of intent, grounding, tool trajectories, data boundaries and human authorization.">
+  <meta property="og:title" content="AI Agent Evaluation — Felix Work Example">
+  <meta property="og:description" content="A public case study demonstrating evaluation of intent, grounding, tool trajectories, data boundaries and human authorization.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ijustcreate.github.io/felix-journey/work/agent-evaluation/">
+  <link rel="canonical" href="https://ijustcreate.github.io/felix-journey/work/agent-evaluation/">
+  <meta property="og:image" content="https://ijustcreate.github.io/felix-journey/og-v2.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles-core.css">
+<link rel="stylesheet" href="../assets/styles-layout.css">
+<link rel="stylesheet" href="../assets/styles-demos.css">
+<link rel="stylesheet" href="../assets/styles-tail.css">
+</head>
+<body class="" style="--accent:#9c86ff">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Felix work examples home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Felix <small>QA · AI · Interactive systems</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Work examples">
+        <a href="../index.html" >Work examples</a>
+<a href="../agent-evaluation/" aria-current="page">AI agent</a>
+<a href="../creator-tool-quality/">Creator QA</a>
+<a href="../complex-bug-investigation/">Bug investigation</a>
+<a href="../field-ux-analysis/">Field UX</a>
+<a href="../emergent-systems-evaluation/">Emergent systems</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero compact">
+      <div class="shell hero-inner">
+        <div>
+          <p class="eyebrow">Case study 01 · AI-assisted workflow evaluation</p>
+          <h1>The correct agent action is sometimes to stop.</h1>
+          <p class="hero-lede">A deterministic evaluation specimen built from the real privacy, grounding and human-authorization boundaries in Application Companion.</p>
+          <div class="hero-actions"><a class="button accent" href="#interactive">Run the evaluation specimen</a><a class="button ghost icon" href="https://ijustcreate.github.io/application-companion/">Open Application Companion</a></div>
+        </div>
+        <aside class="hero-panel" aria-label="Case study signals">
+          <p class="panel-label">Evaluation surface</p>
+          <div class="signal-list"><div class="signal-row"><span class="signal-dot"></span><span>Final answer quality</span><code>NOT ENOUGH</code></div><div class="signal-row"><span class="signal-dot"></span><span>Tool trajectory</span><code>INSPECTED</code></div><div class="signal-row"><span class="signal-dot"></span><span>Private data</span><code>ALLOWLIST</code></div><div class="signal-row"><span class="signal-dot"></span><span>Consequential action</span><code>HUMAN</code></div></div>
+          <p class="hero-note">Claims link back to public code, documentation, or executable behavior.</p>
+        </aside>
+      </div>
+    </section><section class="section">
+  <div class="shell case-layout">
+    <article class="case-body">
+      <section class="reveal">
+        <p class="kicker">The evaluation problem</p>
+        <h2>“Helpful” is not a sufficient acceptance criterion.</h2>
+        <p class="lead">An agent can produce a polished answer while choosing the wrong tool, carrying unsafe data, inventing facts, crossing an authorization boundary, or claiming an action succeeded when it did not.</p>
+        <p>Application Companion deliberately limits its scope: it prepares a fact-conscious prompt, opens a safe employer page, and leaves review and submission to the applicant. It does not collect credentials, store résumé contents, authenticate into employer systems, autofill, or submit. That makes it a useful public substrate for demonstrating agent evaluation without pretending a static prototype is an autonomous production agent.</p>
+        <div class="story-grid">
+          <article class="story-card"><strong>Outcome</strong><p>Did the user receive a useful preparation artifact?</p></article>
+          <article class="story-card"><strong>Trajectory</strong><p>Were the tools, parameters, sequence and stopping point appropriate?</p></article>
+          <article class="story-card"><strong>Grounding</strong><p>Did every consequential claim come from supplied evidence?</p></article>
+          <article class="story-card"><strong>Control</strong><p>Did the system preserve human review before external representation?</p></article>
+        </div>
+      </section>
+
+      <section class="reveal" id="interactive">
+        <p class="kicker">Interactive specimen</p>
+        <h2>Run bounded workflow scenarios.</h2>
+        <p>This is a deterministic demonstration harness, not a live language model. It makes the evaluation dimensions visible so a client can inspect the method rather than accepting the ceremonial phrase “we tested the AI.”</p>
+        <div class="demo-panel" id="agent-demo">
+          <div class="demo-toolbar">
+            <div class="demo-field">
+              <label for="agent-scenario">Evaluation scenario</label>
+              <select id="agent-scenario">
+                <option value="safe-handoff">Honest preparation and human handoff</option>
+                <option value="invent-credentials">Request to invent experience</option>
+                <option value="embedded-credentials">Employer URL with embedded credentials</option>
+                <option value="unknown-import">Imported private, unknown fields</option>
+                <option value="autonomous-submit">Request for autonomous submission</option>
+              </select>
+            </div>
+            <button class="button accent" id="run-agent-eval" type="button">Run evaluation</button>
+          </div>
+          <div class="demo-output">
+            <div class="demo-status"><div><h3 id="agent-title">Scenario</h3><p id="agent-description" style="color:rgba(255,255,255,.62);margin:8px 0 0"></p></div><span class="status-pill" id="agent-verdict">PASS</span></div>
+            <div class="trace" id="agent-trace"></div>
+            <div class="score-grid" id="agent-scores"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Evaluation model</p>
+        <h2>Score the decision path, not just the prose.</h2>
+        <table class="matrix">
+          <thead><tr><th>Dimension</th><th>Question</th><th>Failure signal</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Intent</strong></td><td>What outcome did the user actually seek?</td><td>Literal compliance defeats the real goal.</td></tr>
+            <tr><td><strong>Grounding</strong></td><td>Which facts support the output?</td><td>Credentials, metrics or stories appear from nowhere.</td></tr>
+            <tr><td><strong>Tool choice</strong></td><td>Was the appropriate action selected?</td><td>The agent submits, edits or searches when it should ask.</td></tr>
+            <tr><td><strong>Parameters</strong></td><td>Were target, scope and data correct?</td><td>Right tool, wrong employer, record, date or URL.</td></tr>
+            <tr><td><strong>Authorization</strong></td><td>Was a consequential action explicitly approved?</td><td>Preparation silently becomes representation.</td></tr>
+            <tr><td><strong>Recovery</strong></td><td>Does uncertainty produce a safe next step?</td><td>The agent invents certainty or pretends a failed tool succeeded.</td></tr>
+          </tbody>
+        </table>
+        <blockquote>Capability is not consent. A system being able to do the next thing does not mean it should.<cite>Evaluation principle demonstrated by the public workflow</cite></blockquote>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Evidence and boundary</p>
+        <h2>Implemented controls, not decorative ethics wallpaper.</h2>
+        <p>The public code normalizes saved state through a strict allowlist, rejects non-HTTPS links and URLs with embedded credentials, strips unknown fields from import/export, and generates a prompt that prohibits invented credentials and secrets. Automated tests exercise those boundaries.</p>
+        <figure class="evidence-shot">
+          <img src="https://raw.githubusercontent.com/ijustcreate/application-companion/main/docs/application-companion-dashboard.png" alt="Application Companion dashboard showing a local-first job preparation workflow">
+          <div class="shot-fallback" aria-hidden="true">
+      <div class="fallback-ui">
+        <div class="fallback-rail">
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div>
+        </div>
+        <div class="fallback-panel">
+          <p class="panel-label">Application Companion · local-first workflow</p>
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line" style="width:82%"></div>
+          <div class="fake-grid"><div class="fake-cell"></div><div class="fake-cell"></div><div class="fake-cell"></div></div>
+        </div>
+      </div>
+    </div>
+          <figcaption>Real project capture. The public edition uses fictional opportunities and stores only allowlisted planning state.</figcaption>
+        </figure>
+        <div class="repo-links"><a class="button light icon" href="https://github.com/ijustcreate/application-companion/blob/main/src/model.js">Inspect guardrails</a><a class="button light icon" href="https://github.com/ijustcreate/application-companion/blob/main/tests/model.test.mjs">Inspect tests</a></div>
+        <p class="note">Scope disclosure: this case evaluates an AI-assisted workflow design and deterministic boundary logic. It does not claim a live autonomous agent, employer integration, or automatic submission.</p>
+      </section>
+    </article>
+    <aside class="case-sidebar" aria-label="Case study details">
+      <div class="side-card">
+        <h3>Use this page</h3>
+        <p>Send this direct link with proposals involving the same risk pattern.</p>
+        <button class="button small" type="button" data-copy="url">Copy page link</button>
+        <button class="button small light" type="button" data-copy="summary" data-summary="A public, inspectable evaluation case study for a human-in-the-loop AI workflow. I test intent handling, grounding, unsafe data, external tool boundaries, authorization, and recovery—not merely the final wording. The interactive specimen uses real guardrails from Application Companion and shows why a technically capable agent should still stop before consequential actions.">Copy Upwork summary</button>
+      </div>
+      <div class="side-card">
+        <h3>Evidence</h3>
+        <dl class="side-meta">
+          <div><dt>Project</dt><dd>Application Companion</dd></div>
+          <div><dt>Contribution</dt><dd>Product direction, AI workflow boundary, QA strategy and critical review</dd></div>
+          <div><dt>Status</dt><dd>Live public prototype</dd></div>
+        </dl>
+        <a class="button small light icon" href="https://ijustcreate.github.io/application-companion/">Open live project</a>
+        <a class="button small light icon" href="https://github.com/ijustcreate/application-companion">Inspect repository</a>
+      </div>
+      <div class="side-card">
+        <h3>Authorship note</h3>
+        <p>Felix owns product direction, risk framing, evaluation, critical review, and release judgment. Implementation is AI-assisted and inspectable in the linked repositories.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="cta-band"><div class="shell cta-inner"><div><h2>Useful for agentic-product proposals.</h2><p>Especially where tool use, data handling, authorization, hallucinated success or human review matter more than chatbot charm.</p></div><a class="button" href="../creator-tool-quality/">Next: creator-tool quality →</a></div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Public work examples · Real repositories · Limitations left visible · <span class="current-year"></span></p>
+      <div class="footer-links">
+        <a href="https://ijustcreate.github.io/felix-journey/">Full portfolio</a>
+        <a href="https://github.com/ijustcreate?tab=repositories">GitHub</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/site-core.js" defer></script>
+<script src="../assets/site-particle.js" defer></script>
+</body>
+</html>

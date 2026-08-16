@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f18">
+  <title>Creator Tool & GenAI Test Strategy — Felix Work Example</title>
+  <meta name="description" content="A creator-tool quality strategy spanning the core creation spine, abuse, hardware, recovery, kiosk use and GenAI evaluation extensions.">
+  <meta property="og:title" content="Creator Tool & GenAI Test Strategy — Felix Work Example">
+  <meta property="og:description" content="A creator-tool quality strategy spanning the core creation spine, abuse, hardware, recovery, kiosk use and GenAI evaluation extensions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ijustcreate.github.io/felix-journey/work/creator-tool-quality/">
+  <link rel="canonical" href="https://ijustcreate.github.io/felix-journey/work/creator-tool-quality/">
+  <meta property="og:image" content="https://ijustcreate.github.io/felix-journey/og-v2.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles-core.css">
+<link rel="stylesheet" href="../assets/styles-layout.css">
+<link rel="stylesheet" href="../assets/styles-demos.css">
+<link rel="stylesheet" href="../assets/styles-tail.css">
+</head>
+<body class="" style="--accent:#ff806c">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Felix work examples home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Felix <small>QA · AI · Interactive systems</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Work examples">
+        <a href="../index.html" >Work examples</a>
+<a href="../agent-evaluation/">AI agent</a>
+<a href="../creator-tool-quality/" aria-current="page">Creator QA</a>
+<a href="../complex-bug-investigation/">Bug investigation</a>
+<a href="../field-ux-analysis/">Field UX</a>
+<a href="../emergent-systems-evaluation/">Emergent systems</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero compact">
+      <div class="shell hero-inner">
+        <div>
+          <p class="eyebrow">Case study 02 · Creator-tool test strategy</p>
+          <h1>Protect the creation spine.</h1>
+          <p class="hero-lede">A quality strategy grounded in Museum Animation Studio, then extended to the harder problem of nondeterministic GenAI creation.</p>
+          <div class="hero-actions"><a class="button accent" href="#matrix">Explore the test matrix</a><a class="button ghost icon" href="https://github.com/ijustcreate/museum-animation-studio">Inspect the project</a></div>
+        </div>
+        <aside class="hero-panel" aria-label="Case study signals">
+          <p class="panel-label">Evaluation surface</p>
+          <div class="signal-list"><div class="signal-row"><span class="signal-dot"></span><span>Primary loop</span><code>CAPTURE→EXPORT</code></div><div class="signal-row"><span class="signal-dot"></span><span>Abuse model</span><code>PUBLIC KIOSK</code></div><div class="signal-row"><span class="signal-dot"></span><span>Recovery</span><code>LOCAL FIRST</code></div><div class="signal-row"><span class="signal-dot"></span><span>GenAI output</span><code>NON-BINARY</code></div></div>
+          <p class="hero-note">Claims link back to public code, documentation, or executable behavior.</p>
+        </aside>
+      </div>
+    </section><section class="section">
+  <div class="shell case-layout">
+    <article class="case-body">
+      <section class="reveal">
+        <p class="kicker">The product</p><h2>A child-facing creator tool on a museum floor.</h2>
+        <p class="lead">Museum Animation Studio is a Windows/Electron stop-motion prototype built around one visible loop: frame the scene, capture, preview, finish.</p>
+        <p>Behind that simple surface are cameras, microphones, local folders, autosaved manifests, frame ordering, undo/redo, playback, stickers, sounds, FFmpeg export, showcase files, staff diagnostics, interruption recovery and public-kiosk failure modes. A polite desktop-app test plan would miss the actual product.</p>
+        <figure class="evidence-shot">
+          <img src="https://raw.githubusercontent.com/ijustcreate/museum-animation-studio/main/docs/screenshots/museum-animation-studio-kid-mode.png" alt="Museum Animation Studio in Kid Mode with a large camera stage and frame timeline">
+          <div class="shot-fallback" aria-hidden="true">
+      <div class="fallback-ui">
+        <div class="fallback-rail">
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div>
+        </div>
+        <div class="fallback-panel">
+          <p class="panel-label">Museum Animation Studio · Kid Mode</p>
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line" style="width:82%"></div>
+          <div class="fake-grid"><div class="fake-cell"></div><div class="fake-cell"></div><div class="fake-cell"></div></div>
+        </div>
+      </div>
+    </div>
+          <figcaption>Real project capture. The camera remains the stage; secondary controls stay around the edges.</figcaption>
+        </figure>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Risk model</p><h2>Test like a public kiosk, not a courteous laptop.</h2>
+        <p>The strategy assumes rapid repeated input, abandoned sessions, device removal, low disk space, strange titles, interrupted export and staff under time pressure. The critical regression rule is blunt: every phase must preserve capture, save, reload, playback and export. A feature that breaks that spine loses.</p>
+        <div class="process">
+          <div class="process-step"><span class="process-index">01</span><div><h3>Capture</h3><p>Camera readiness, frame creation, rapid input, covered lens, disconnect and device switching.</p></div></div>
+          <div class="process-step"><span class="process-index">02</span><div><h3>Persist</h3><p>Frame files, ordered manifest, autosave, interrupted process, disk pressure and recovery folders.</p></div></div>
+          <div class="process-step"><span class="process-index">03</span><div><h3>Edit and replay</h3><p>Undo at boundaries, hidden/reordered frames, timing, loop modes and state after reload.</p></div></div>
+          <div class="process-step"><span class="process-index">04</span><div><h3>Export</h3><p>MP4/GIF command construction, zero/one-frame behavior, missing FFmpeg and non-destructive failure.</p></div></div>
+        </div>
+      </section>
+
+      <section class="reveal" id="matrix">
+        <p class="kicker">Interactive coverage</p><h2>Inspect the test portfolio by risk class.</h2>
+        <div class="filter-bar" aria-label="Filter test cases">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-button" type="button" data-filter="spine" aria-pressed="false">Core spine</button>
+          <button class="filter-button" type="button" data-filter="abuse" aria-pressed="false">Abuse</button>
+          <button class="filter-button" type="button" data-filter="hardware" aria-pressed="false">Hardware</button>
+          <button class="filter-button" type="button" data-filter="recovery" aria-pressed="false">Recovery</button>
+          <button class="filter-button" type="button" data-filter="genai" aria-pressed="false">GenAI extension</button>
+        </div>
+        <div class="test-grid">
+          <article class="test-card" data-category="spine"><small>Core spine</small><h3>100-frame persistence</h3><p>Capture, verify ordered files and manifest, restart, then confirm playback uses the saved order.</p></article>
+          <article class="test-card" data-category="spine"><small>Core spine</small><h3>Export cannot damage source</h3><p>Force MP4/GIF failure and verify the editable project remains intact and recoverable.</p></article>
+          <article class="test-card" data-category="abuse"><small>Abuse</small><h3>Capture and undo storms</h3><p>Repeat each action 100 times rapidly; verify boundaries, ordering and no unhandled crash.</p></article>
+          <article class="test-card" data-category="hardware"><small>Hardware</small><h3>Camera disappears mid-capture</h3><p>Expose the loss, preserve completed frames, offer restart, and avoid silent stale preview.</p></article>
+          <article class="test-card" data-category="recovery"><small>Recovery</small><h3>Process killed mid-session</h3><p>Relaunch into a recoverable project rather than an empty screen or corrupted manifest.</p></article>
+          <article class="test-card" data-category="recovery"><small>Recovery</small><h3>Six-hour museum day</h3><p>50 projects, 10 exports, abandoned sessions, camera resets and restart with no lost completed export.</p></article>
+          <article class="test-card" data-category="genai"><small>GenAI extension</small><h3>Preservation under edit</h3><p>“Change only the background” must preserve frame order, timing, drawings, audio and user-selected content.</p></article>
+          <article class="test-card" data-category="genai"><small>GenAI extension</small><h3>Useful variation</h3><p>Repeated generation should vary creatively without drifting outside requested style, age suitability or editability.</p></article>
+          <article class="test-card" data-category="genai"><small>GenAI extension</small><h3>Regeneration recovery</h3><p>A failed or low-quality generation must not replace the last good version or break undo/export.</p></article>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Extending to GenAI</p><h2>When “correct” stops being binary.</h2>
+        <p>A GenAI creator tool adds several layers beyond functional success. The system may complete without crashing and still fail instruction adherence, visual coherence, preservation, editability or creative usefulness.</p>
+        <table class="matrix"><thead><tr><th>Layer</th><th>Question</th><th>Example failure</th></tr></thead><tbody>
+          <tr><td><strong>Function</strong></td><td>Did generation complete and produce an editable asset?</td><td>Output exists but cannot be reopened or exported.</td></tr>
+          <tr><td><strong>Instruction</strong></td><td>Were explicit constraints followed?</td><td>The requested object exists but is not usable or age-appropriate.</td></tr>
+          <tr><td><strong>Coherence</strong></td><td>Does the result work as a whole?</td><td>Individual elements are present but spatially or narratively contradictory.</td></tr>
+          <tr><td><strong>Preservation</strong></td><td>Did a narrow edit leave unrelated work intact?</td><td>Changing one element regenerates the entire project.</td></tr>
+          <tr><td><strong>Creative utility</strong></td><td>Is the output worth continuing from?</td><td>Technically valid, aesthetically generic, structurally useless.</td></tr>
+        </tbody></table>
+        <div class="callout"><strong>Important boundary</strong><p>The current public repository is a stop-motion creator tool, not a deployed GenAI product. The GenAI section demonstrates how the existing quality architecture extends to nondeterministic creation without falsely claiming implemented AI features.</p></div>
+      </section>
+    </article>
+    <aside class="case-sidebar" aria-label="Case study details">
+      <div class="side-card">
+        <h3>Use this page</h3>
+        <p>Send this direct link with proposals involving the same risk pattern.</p>
+        <button class="button small" type="button" data-copy="url">Copy page link</button>
+        <button class="button small light" type="button" data-copy="summary" data-summary="A creator-tool quality strategy built around Museum Animation Studio. The work separates the critical creation spine from abuse, hardware, recovery, kiosk, privacy, and future GenAI risks. It includes acceptance criteria, a six-hour museum-day simulation, regression rules, and an interactive test matrix designed for products where the output can vary but user work must remain recoverable.">Copy Upwork summary</button>
+      </div>
+      <div class="side-card">
+        <h3>Evidence</h3>
+        <dl class="side-meta">
+          <div><dt>Project</dt><dd>Museum Animation Studio</dd></div>
+          <div><dt>Contribution</dt><dd>Product direction, creator workflow, QA strategy and public-kiosk risk model</dd></div>
+          <div><dt>Status</dt><dd>Working implementation scaffold; hardware and packaging limits documented</dd></div>
+        </dl>
+        
+        <a class="button small light icon" href="https://github.com/ijustcreate/museum-animation-studio">Inspect repository</a>
+      </div>
+      <div class="side-card">
+        <h3>Authorship note</h3>
+        <p>Felix owns product direction, risk framing, evaluation, critical review, and release judgment. Implementation is AI-assisted and inspectable in the linked repositories.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="cta-band"><div class="shell cta-inner"><div><h2>Useful for GenAI and creator-platform proposals.</h2><p>It demonstrates how to preserve creative work, separate subjective quality from functional correctness, and test hardware, state and recovery around the model.</p></div><a class="button" href="../complex-bug-investigation/">Next: complex bug investigation →</a></div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Public work examples · Real repositories · Limitations left visible · <span class="current-year"></span></p>
+      <div class="footer-links">
+        <a href="https://ijustcreate.github.io/felix-journey/">Full portfolio</a>
+        <a href="https://github.com/ijustcreate?tab=repositories">GitHub</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/site-core.js" defer></script>
+<script src="../assets/site-particle.js" defer></script>
+</body>
+</html>

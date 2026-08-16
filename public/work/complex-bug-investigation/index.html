@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f18">
+  <title>Complex Bug Investigation — Felix Work Example</title>
+  <meta name="description" content="A forensic QA case study isolating a calendar regression caused by inactive migrated records leaking into visible lane allocation.">
+  <meta property="og:title" content="Complex Bug Investigation — Felix Work Example">
+  <meta property="og:description" content="A forensic QA case study isolating a calendar regression caused by inactive migrated records leaking into visible lane allocation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ijustcreate.github.io/felix-journey/work/complex-bug-investigation/">
+  <link rel="canonical" href="https://ijustcreate.github.io/felix-journey/work/complex-bug-investigation/">
+  <meta property="og:image" content="https://ijustcreate.github.io/felix-journey/og-v2.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles-core.css">
+<link rel="stylesheet" href="../assets/styles-layout.css">
+<link rel="stylesheet" href="../assets/styles-demos.css">
+<link rel="stylesheet" href="../assets/styles-tail.css">
+</head>
+<body class="" style="--accent:#ffc45d">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Felix work examples home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Felix <small>QA · AI · Interactive systems</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Work examples">
+        <a href="../index.html" >Work examples</a>
+<a href="../agent-evaluation/">AI agent</a>
+<a href="../creator-tool-quality/">Creator QA</a>
+<a href="../complex-bug-investigation/" aria-current="page">Bug investigation</a>
+<a href="../field-ux-analysis/">Field UX</a>
+<a href="../emergent-systems-evaluation/">Emergent systems</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero compact">
+      <div class="shell hero-inner">
+        <div>
+          <p class="eyebrow">Case study 03 · Complex defect isolation</p>
+          <h1>The calendar was haunted by preserved data.</h1>
+          <p class="hero-lede">A Project Lantern regression where inactive legacy records remained historically correct—and visually destructive.</p>
+          <div class="hero-actions"><a class="button accent" href="#visualize">Visualize the regression</a><a class="button ghost icon" href="https://ijustcreate.github.io/project-lantern/">Open Project Lantern</a></div>
+        </div>
+        <aside class="hero-panel" aria-label="Case study signals">
+          <p class="panel-label">Evaluation surface</p>
+          <div class="signal-list"><div class="signal-row"><span class="signal-dot"></span><span>Symptom</span><code>SQUEEZED LANES</code></div><div class="signal-row"><span class="signal-dot"></span><span>Data</span><code>MUST PRESERVE</code></div><div class="signal-row"><span class="signal-dot"></span><span>View</span><code>MUST EXCLUDE</code></div><div class="signal-row"><span class="signal-dot"></span><span>Migration</span><code>IDEMPOTENT</code></div></div>
+          <p class="hero-note">Claims link back to public code, documentation, or executable behavior.</p>
+        </aside>
+      </div>
+    </section><section class="section">
+  <div class="shell case-layout">
+    <article class="case-body">
+      <section class="reveal">
+        <p class="kicker">Initial symptom</p><h2>A layout problem with a data-history cause.</h2>
+        <p class="lead">The new Welcome Gallery and Discovery Hall schedule tracks were compressed because archived full-day seed events still occupied visible calendar lanes.</p>
+        <p>The records were not supposed to be deleted. They were legacy defaults preserved in storage with <span class="inline-code">active=false</span>. The failure was subtler: preservation state had leaked into presentation eligibility. The system remembered correctly and displayed incorrectly—the software equivalent of keeping your ex’s toothbrush for legal reasons, then assigning it half the bathroom.</p>
+        <div class="story-grid">
+          <article class="story-card"><strong>User impact</strong><p>Current operating events became narrow and hard to read.</p></article>
+          <article class="story-card"><strong>Risk</strong><p>A broad cleanup could erase historical or customized schedule data.</p></article>
+          <article class="story-card"><strong>Constraint</strong><p>Only two exact obsolete seed records should be archived from visible lanes.</p></article>
+          <article class="story-card"><strong>Quality bar</strong><p>Migration must remain stable on repeated normalization.</p></article>
+        </div>
+      </section>
+
+      <section class="reveal" id="visualize">
+        <p class="kicker">Interactive reproduction</p><h2>Ghost records versus visible operating lanes.</h2>
+        <p>The simplified model below demonstrates the failure mechanism. The gray full-day blocks are inactive legacy records. Toggle the verified fix to keep those records in storage while excluding them from visible lane calculation.</p>
+        <div class="lane-demo">
+          <div class="lane-toolbar"><strong id="lane-caption">Broken: inactive full-day legacy records are still counted by the visible lane layout.</strong><button class="button small" id="toggle-lanes" type="button" aria-pressed="false">Apply verified fix</button></div>
+          <div class="lane-grid" id="lane-grid" aria-label="Calendar lane regression visualization">
+            <div class="lane-time">7 AM<br><br><br>10 AM<br><br><br>1 PM<br><br><br>4 PM</div>
+            <div class="lane-day" data-day="MON"><div class="event ghost-event">Inactive legacy seed</div><div class="event">Board · Welcome</div></div>
+            <div class="lane-day" data-day="TUE"><div class="event ghost-event">Inactive legacy seed</div><div class="event">Announcement</div></div>
+            <div class="lane-day" data-day="WED"><div class="event ghost-event">Inactive legacy seed</div><div class="event">Board · Discovery</div></div>
+            <div class="lane-day" data-day="THU"><div class="event ghost-event">Inactive legacy seed</div><div class="event">Broadcast</div></div>
+            <div class="lane-day" data-day="FRI"><div class="event ghost-event">Inactive legacy seed</div><div class="event">Board · Welcome</div></div>
+            <div class="lane-day" data-day="SAT"><div class="event ghost-event">Inactive legacy seed</div><div class="event">Blip</div></div>
+            <div class="lane-day" data-day="SUN"><div class="event ghost-event">Inactive legacy seed</div><div class="event">Board · Discovery</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Investigation path</p><h2>Preserve the record. Remove its visual consequence.</h2>
+        <div class="process">
+          <div class="process-step"><span class="process-index">01</span><div><h3>Reframe the report</h3><p>Not “calendar columns are too narrow,” but “inactive migrated records still participate in visible lane allocation.”</p></div></div>
+          <div class="process-step"><span class="process-index">02</span><div><h3>Protect the dangerous constraint</h3><p>Do not delete or broadly filter user schedules. Match the two exact legacy seed IDs and preserve their stored records.</p></div></div>
+          <div class="process-step"><span class="process-index">03</span><div><h3>Separate domain state from view state</h3><p>An archived record remains part of history while becoming ineligible for the active calendar projection.</p></div></div>
+          <div class="process-step"><span class="process-index">04</span><div><h3>Verify migration behavior</h3><p>Confirm custom schedules survive, exact legacy records remain inactive, a second normalization adds no duplicates, and no ghost events render.</p></div></div>
+          <div class="process-step"><span class="process-index">05</span><div><h3>Verify the human consequence</h3><p>Measure restored lane width and readability instead of declaring victory because a unit test turned green.</p></div></div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Verification evidence</p><h2>A fix described in falsifiable terms.</h2>
+        <table class="matrix"><thead><tr><th>Check</th><th>Verified result</th></tr></thead><tbody>
+          <tr><td><strong>Historical preservation</strong></td><td>Both inactive legacy records remained in migrated browser state.</td></tr>
+          <tr><td><strong>Visible projection</strong></td><td>Zero archived seed events rendered into the week layout.</td></tr>
+          <tr><td><strong>Current content</strong></td><td>The intended operating events remained visible across the schedule.</td></tr>
+          <tr><td><strong>Idempotence</strong></td><td>Repeated normalization produced no duplicate schedule entries.</td></tr>
+          <tr><td><strong>Build hygiene</strong></td><td>Fixture and diff checks passed; the change was recorded in the project changelog.</td></tr>
+        </tbody></table>
+        <figure class="evidence-shot">
+          <img src="https://raw.githubusercontent.com/ijustcreate/project-lantern/main/public/assets/help/schedule.png" alt="Project Lantern scheduling workspace">
+          <div class="shot-fallback" aria-hidden="true">
+      <div class="fallback-ui">
+        <div class="fallback-rail">
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div>
+        </div>
+        <div class="fallback-panel">
+          <p class="panel-label">Project Lantern · Schedule</p>
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line" style="width:82%"></div>
+          <div class="fake-grid"><div class="fake-cell"></div><div class="fake-cell"></div><div class="fake-cell"></div></div>
+        </div>
+      </div>
+    </div>
+          <figcaption>Real Project Lantern schedule capture. The application models boards, announcements, blips and broadcasts as distinct scheduled layers.</figcaption>
+        </figure>
+        <div class="repo-links"><a class="button light icon" href="https://github.com/ijustcreate/project-lantern/blob/main/IMPLEMENTATION_REPORT.md">Read implementation report</a><a class="button light icon" href="https://github.com/ijustcreate/project-lantern/blob/main/src/changelog.json">Inspect verification history</a></div>
+      </section>
+    </article>
+    <aside class="case-sidebar" aria-label="Case study details">
+      <div class="side-card">
+        <h3>Use this page</h3>
+        <p>Send this direct link with proposals involving the same risk pattern.</p>
+        <button class="button small" type="button" data-copy="url">Copy page link</button>
+        <button class="button small light" type="button" data-copy="summary" data-summary="A forensic QA case study from Project Lantern: inactive legacy schedule records were correctly preserved in storage but still consumed visible calendar lanes. I separated data preservation from presentation eligibility, constrained the fix to exact legacy records, protected custom schedules, and verified migration idempotence, zero ghost events, and restored display width.">Copy Upwork summary</button>
+      </div>
+      <div class="side-card">
+        <h3>Evidence</h3>
+        <dl class="side-meta">
+          <div><dt>Project</dt><dd>Project Lantern</dd></div>
+          <div><dt>Contribution</dt><dd>Product QA, risk framing, regression isolation and verification direction</dd></div>
+          <div><dt>Status</dt><dd>Active public museum control-center prototype</dd></div>
+        </dl>
+        <a class="button small light icon" href="https://ijustcreate.github.io/project-lantern/">Open live project</a>
+        <a class="button small light icon" href="https://github.com/ijustcreate/project-lantern">Inspect repository</a>
+      </div>
+      <div class="side-card">
+        <h3>Authorship note</h3>
+        <p>Felix owns product direction, risk framing, evaluation, critical review, and release judgment. Implementation is AI-assisted and inspectable in the linked repositories.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="cta-band"><div class="shell cta-inner"><div><h2>Useful for debugging and regression proposals.</h2><p>It shows how a vague visual complaint becomes a constrained data/view defect with preservation requirements and measurable verification.</p></div><a class="button" href="../field-ux-analysis/">Next: field UX analysis →</a></div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Public work examples · Real repositories · Limitations left visible · <span class="current-year"></span></p>
+      <div class="footer-links">
+        <a href="https://ijustcreate.github.io/felix-journey/">Full portfolio</a>
+        <a href="https://github.com/ijustcreate?tab=repositories">GitHub</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/site-core.js" defer></script>
+<script src="../assets/site-particle.js" defer></script>
+</body>
+</html>
