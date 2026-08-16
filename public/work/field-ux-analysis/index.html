@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f18">
+  <title>Game & Field UX Analysis — Felix Work Example</title>
+  <meta name="description" content="A mobile game and sensor UX case study showing visible uncertainty, graceful degradation, exact matching and local-first recovery.">
+  <meta property="og:title" content="Game & Field UX Analysis — Felix Work Example">
+  <meta property="og:description" content="A mobile game and sensor UX case study showing visible uncertainty, graceful degradation, exact matching and local-first recovery.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ijustcreate.github.io/felix-journey/work/field-ux-analysis/">
+  <link rel="canonical" href="https://ijustcreate.github.io/felix-journey/work/field-ux-analysis/">
+  <meta property="og:image" content="https://ijustcreate.github.io/felix-journey/og-v2.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles-core.css">
+<link rel="stylesheet" href="../assets/styles-layout.css">
+<link rel="stylesheet" href="../assets/styles-demos.css">
+<link rel="stylesheet" href="../assets/styles-tail.css">
+</head>
+<body class="" style="--accent:#58d6ca">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Felix work examples home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Felix <small>QA · AI · Interactive systems</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Work examples">
+        <a href="../index.html" >Work examples</a>
+<a href="../agent-evaluation/">AI agent</a>
+<a href="../creator-tool-quality/">Creator QA</a>
+<a href="../complex-bug-investigation/">Bug investigation</a>
+<a href="../field-ux-analysis/" aria-current="page">Field UX</a>
+<a href="../emergent-systems-evaluation/">Emergent systems</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero compact">
+      <div class="shell hero-inner">
+        <div>
+          <p class="eyebrow">Case study 04 · Game / UX analysis</p>
+          <h1>Reality is a hostile dependency.</h1>
+          <p class="hero-lede">Quest Compass turns ordinary places into mobile quests using GPS, compass, camera glyph recognition, local state and optional cloud sync.</p>
+          <div class="hero-actions"><a class="button accent" href="#simulator">Stress the sensor UX</a><a class="button ghost icon" href="https://ijustcreate.github.io/location-based-quest-guide-app/">Open Quest Compass</a></div>
+        </div>
+        <aside class="hero-panel" aria-label="Case study signals">
+          <p class="panel-label">Evaluation surface</p>
+          <div class="signal-list"><div class="signal-row"><span class="signal-dot"></span><span>GPS</span><code>APPROXIMATE</code></div><div class="signal-row"><span class="signal-dot"></span><span>Camera</span><code>HEURISTIC</code></div><div class="signal-row"><span class="signal-dot"></span><span>Network</span><code>OPTIONAL</code></div><div class="signal-row"><span class="signal-dot"></span><span>UX state</span><code>HONEST</code></div></div>
+          <p class="hero-note">Claims link back to public code, documentation, or executable behavior.</p>
+        </aside>
+      </div>
+    </section><section class="section">
+  <div class="shell case-layout">
+    <article class="case-body">
+      <section class="reveal">
+        <p class="kicker">Experience problem</p><h2>The system never has perfect evidence.</h2>
+        <p class="lead">GPS may be accurate enough to approach a location but not prove arrival. A camera may see the right color and wrong shape. A compass may oscillate. Network sync may disappear after the child has already found the thing.</p>
+        <p>Quest Compass exposes the state of each subsystem rather than flattening uncertainty into one smug green checkmark. GPS and camera permissions are requested only after a relevant action. The camera progresses through searching, signal found, holding steady and locked. A wrong glyph cannot satisfy the objective. Local quests remain useful when cloud services are unavailable.</p>
+        <figure class="evidence-shot">
+          <img src="https://raw.githubusercontent.com/ijustcreate/location-based-quest-guide-app/main/docs/screenshots/quest-compass-trail.png" alt="Quest Compass mobile trail view with compass, system status and active quest">
+          <div class="shot-fallback" aria-hidden="true">
+      <div class="fallback-ui">
+        <div class="fallback-rail">
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div>
+        </div>
+        <div class="fallback-panel">
+          <p class="panel-label">Quest Compass · Trail view</p>
+          <div class="fake-line accent"></div><div class="fake-line"></div><div class="fake-line" style="width:82%"></div>
+          <div class="fake-grid"><div class="fake-cell"></div><div class="fake-cell"></div><div class="fake-cell"></div></div>
+        </div>
+      </div>
+    </div>
+          <figcaption>Real project capture. The interface keeps GPS, compass, scanner and quest state visible during the play loop.</figcaption>
+        </figure>
+      </section>
+
+      <section class="reveal" id="simulator">
+        <p class="kicker">Interactive UX simulator</p><h2>Change the evidence. Watch the interface recommendation change.</h2>
+        <p>This simplified specimen demonstrates the product decision layer: weak sensors should change language and available actions, not merely lower a hidden confidence number.</p>
+        <div class="demo-panel sensor-grid">
+          <div class="control-stack">
+            <div class="demo-field"><div class="range-line"><label for="gps-accuracy">GPS accuracy</label><output id="gps-value">25 m</output></div><input id="gps-accuracy" type="range" min="5" max="150" value="25"></div>
+            <div class="demo-field"><div class="range-line"><label for="light-quality">Camera light quality</label><output id="light-value">72%</output></div><input id="light-quality" type="range" min="10" max="100" value="72"></div>
+            <div class="demo-field"><div class="range-line"><label for="marker-stability">Stable marker frames</label><output id="stability-value">6 / 10</output></div><input id="marker-stability" type="range" min="0" max="10" value="6"></div>
+            <label class="switch-line" for="network-online"><span>Network available</span><input id="network-online" type="checkbox" checked></label>
+          </div>
+          <div class="sensor-output">
+            <p class="panel-label">User-facing state</p>
+            <div class="sensor-state">
+              <div class="sensor-row"><span>Location</span><strong id="gps-state"></strong></div>
+              <div class="sensor-row"><span>Scanner</span><strong id="scan-state"></strong></div>
+              <div class="sensor-row"><span>Cloud</span><strong id="cloud-state"></strong></div>
+            </div>
+            <div class="recommendation" id="sensor-recommendation"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">UX evaluation framework</p><h2>Affordance → evidence → feedback → consequence → recovery.</h2>
+        <table class="matrix"><thead><tr><th>Moment</th><th>Quality question</th><th>Failure pattern</th></tr></thead><tbody>
+          <tr><td><strong>Permission</strong></td><td>Does the request arrive when the user understands why?</td><td>Camera/GPS prompt on launch with no context.</td></tr>
+          <tr><td><strong>Evidence</strong></td><td>What does the system actually know?</td><td>“Arrived” based on drifting building-adjacent GPS.</td></tr>
+          <tr><td><strong>Feedback</strong></td><td>Can the child improve the signal?</td><td>A generic failure with no light, stability or direction cue.</td></tr>
+          <tr><td><strong>Consequence</strong></td><td>Does success match the exact objective?</td><td>Any colored marker completes a specific glyph task.</td></tr>
+          <tr><td><strong>Recovery</strong></td><td>Does a missing subsystem destroy the play loop?</td><td>Offline sync loss erases a locally completed discovery.</td></tr>
+          <tr><td><strong>Safety</strong></td><td>Does navigation avoid implying precision it lacks?</td><td>Room-level confidence from outdoor-grade GPS.</td></tr>
+        </tbody></table>
+        <blockquote>“Not available” is a valid system state. Pretending otherwise is not.<cite>Quest Compass product boundary</cite></blockquote>
+      </section>
+
+      <section class="reveal">
+        <p class="kicker">Implementation evidence</p><h2>The scanner makes uncertainty visible.</h2>
+        <p>The public camera module performs local canvas analysis for color and shape, corrects against estimated scene lighting, scores candidate confidence, smooths output, requires stable frames, and then requires a timed hold before confirming. The interface can therefore distinguish “something is visible” from “the requested glyph is stable enough to count.”</p>
+        <div class="repo-links"><a class="button light icon" href="https://github.com/ijustcreate/location-based-quest-guide-app/blob/main/camera.js">Inspect scanner state machine</a><a class="button light icon" href="https://github.com/ijustcreate/location-based-quest-guide-app/blob/main/navigation.js">Inspect navigation logic</a><a class="button light icon" href="https://github.com/ijustcreate/location-based-quest-guide-app/blob/main/storage.js">Inspect local persistence</a></div>
+        <p class="note">Documented limitations remain visible: browser compass behavior varies, GPS is not room-precise, local accounts are convenience profiles rather than secure identity, and the heuristic scanner is sensitive to lighting, blur, shadows, distance and marker geometry.</p>
+      </section>
+    </article>
+    <aside class="case-sidebar" aria-label="Case study details">
+      <div class="side-card">
+        <h3>Use this page</h3>
+        <p>Send this direct link with proposals involving the same risk pattern.</p>
+        <button class="button small" type="button" data-copy="url">Copy page link</button>
+        <button class="button small light" type="button" data-copy="summary" data-summary="A game/UX and sensor-quality case study for Quest Compass, a mobile location adventure using GPS, compass, camera classification, local persistence, and optional cloud sync. The work treats uncertainty as a product state: weak GPS, poor light, unstable markers, denied permissions, and offline service produce honest, recoverable behavior instead of confident fiction.">Copy Upwork summary</button>
+      </div>
+      <div class="side-card">
+        <h3>Evidence</h3>
+        <dl class="side-meta">
+          <div><dt>Project</dt><dd>Quest Compass</dd></div>
+          <div><dt>Contribution</dt><dd>Game/UX direction, sensor-state design, QA analysis and graceful-degradation strategy</dd></div>
+          <div><dt>Status</dt><dd>Shareable v0.8 field prototype; controlled playtests, not safety-critical navigation</dd></div>
+        </dl>
+        <a class="button small light icon" href="https://ijustcreate.github.io/location-based-quest-guide-app/">Open live project</a>
+        <a class="button small light icon" href="https://github.com/ijustcreate/location-based-quest-guide-app">Inspect repository</a>
+      </div>
+      <div class="side-card">
+        <h3>Authorship note</h3>
+        <p>Felix owns product direction, risk framing, evaluation, critical review, and release judgment. Implementation is AI-assisted and inspectable in the linked repositories.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="cta-band"><div class="shell cta-inner"><div><h2>Useful for game, mobile and spatial-computing proposals.</h2><p>It demonstrates how to evaluate an experience whose inputs are probabilistic, physical, permissioned and occasionally possessed.</p></div><a class="button" href="../emergent-systems-evaluation/">Next: emergent systems →</a></div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Public work examples · Real repositories · Limitations left visible · <span class="current-year"></span></p>
+      <div class="footer-links">
+        <a href="https://ijustcreate.github.io/felix-journey/">Full portfolio</a>
+        <a href="https://github.com/ijustcreate?tab=repositories">GitHub</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/site-core.js" defer></script>
+<script src="../assets/site-particle.js" defer></script>
+</body>
+</html>
